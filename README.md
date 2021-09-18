@@ -5,7 +5,7 @@ Website allows users to maintain a virtual collection that is based on their per
 
 -----
 UPDATE 9/18/21
-- Uploaded all initial files 
+- Merged all initial files from Patch-1 Branch
 <!--
 -----
 -->
