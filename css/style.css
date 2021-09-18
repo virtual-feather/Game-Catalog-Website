@@ -1,0 +1,187 @@
+body {
+	/*background: url("../assets/background.jpg");*/
+  background-color: #D8D7CF !important;
+}
+
+
+/* ===========
+        ID
+   =========== */
+#navbar {
+	height: 100%; /* Full-height: remove this if you want "auto" height */
+  	width: 160px; /* Set the width of the sidebar */
+  	position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  	z-index: 999; /* Stay on top */
+  	top: 0; /* Stay at the top */
+  	left: 0;
+  	background-color: #111; /* Black */
+  	overflow-x: hidden; /* Disable horizontal scroll */
+  	padding-top: 20px;
+  	transition: 0.5s;
+
+	-webkit-background-size: 100%;
+  	-moz-background-size: 100%;
+  	-o-background-size: 100%;
+  	background-size: 100%;
+
+  	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+}
+
+/* The navigation menu links */
+#navbar a {
+ 	padding: 6px 8px 6px 16px;
+  	text-decoration: none;
+  	font-size: 22px;
+  	color: #818181;
+  	display: block;
+  	transition: .3s ease;
+}
+
+#navbar a:hover {
+	color: #f1f1f1;
+	transition: .3s ease;
+}
+
+/* Active Navigation Link */
+#navbar a.activeLink {
+  color: #fff;
+  border-right: 2px solid ;
+}
+
+/* User name Display */
+.nav > p {
+  position: absolute; top: 90px; left: 20%; right: 20%;
+  text-align: center;
+  color: #fee;
+  font-size: 8px;
+}
+
+/* Navbar Credits */
+.credit > p{
+	position: absolute; bottom: -10px; left: 10px;
+	font-size: 8px;
+	font: serif;
+	color: #818181;
+}
+
+/* Genre Drop Down List ID */
+#Genre {
+  display: none;
+  margin-top: 15px;
+}
+
+/* ===========
+     Classes
+   =========== */
+
+.nav {
+	margin-top: 80px;
+}
+
+.nav a{
+  font-size: 10px;
+}
+
+.mainContent {
+	margin-top: 30px;
+	margin-left: 220px;
+	margin-right: 60px;
+}
+
+/* Main Page text styles */
+.mainContent h1{
+  padding: 15px;
+  border-radius: 2em 2em / 2em 2em;
+  text-align: center;
+  background-color: #000;
+  color: #ffffff;
+  opacity: 75%;
+}
+
+.mainContent h2{
+  padding: 5px;
+  border-radius: 2em 2em / 2em 2em;
+  text-align: center;
+  background-color: #000;
+  color: #ffffff;
+  opacity: 75%;
+}
+
+.mainContent p{
+  padding: 10px;
+  margin-top: 25px;
+  padding-left: 15px;
+  border-radius: 2em 2em / 2em 2em;
+  text-align: left;
+  background-color: #000;
+  color: #ffffff;
+  opacity: 75%;
+}
+
+/* Input designs */
+.mainContent form{
+  padding: 10px;
+  text-align: center;
+  margin-left: 0px;
+  background-color: #000;
+  border-radius: 2em 2em / 2em 2em;
+  color: #ffffff;
+  opacity: 75%;
+}
+
+.mainContent form > p{
+  position: relative; top: -15px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.mainContent form > i{
+  position: relative; top: -13px;
+  opacity: 50%;
+  font-size: 12px;
+  text-align: center;
+}
+
+.mainContent input[type=text], 
+input[type=password]{
+  padding-left: 8px;
+  height: 25px;
+  border-style: solid black;
+  border-radius: 1em 1em / 1em 1em;
+}
+
+.mainContent input[type=submit]{
+  border-style: solid black;
+  border-radius: 1em 1em / 1em 1em;
+}
+
+/* Button Formats */
+.mainContent button {
+  border-style: solid black;
+  border-radius: 1em 1em / 1em 1em;
+}
+
+/* Image designs */
+.userPFP {
+	position: absolute; left: 45px; top: 20px;
+	height: 65px;
+	border-radius: 4em 4em / 4em 4em;
+  box-shadow: 0 4px 8px 0 rgba(0.5, 0, 0, 0.1), 0 6px 20px 0 rgba(0.5, 0, 0, 0.19);
+}
+
+/* ===========
+      Media
+   =========== */
+::selection{
+  color: #973;
+}
+/*
+@media screen and (max-height: 450px) {
+  #navbar {padding-top: 15px;}
+  #navbar a {font-size: 18px;}
+}
+*/
+
