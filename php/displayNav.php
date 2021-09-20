@@ -1,5 +1,5 @@
 <?php
-	if($_SESSION["accountName"] != "") {
+	if(isset($_SESSION["accountName"])) {
 		echo '<a href="index.php">Home</a>';
 		echo '<a href="about.php">About</a>';
 		echo '<a href="database.php">Database</a>';

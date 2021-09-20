@@ -15,6 +15,7 @@
 	$userName = $_POST["userName"];
 	$password1 = $_POST["password"];
 	$password2 = $_POST["password2"];
+	$recovery = $_POST["recovery"];
 
 	// Check to see if a user with that email exists in the DB
 	$sql = "SELECT userID FROM USERS WHERE 
@@ -26,7 +27,7 @@
 		trigger_error('Invalid query: ' . $conn->error);
 
 	// All fields not entered
-	if($firstName == "" || $lastName == "" || $email == "" || $userName == "" || $password1 == "" || $password2 == "") {
+	if($firstName == "" || $lastName == "" || $email == "" || $userName == "" || $password1 == "" || $password2 == "" || $recovery == "") {
 		// Alert that not all fields were entered
 		echo "
 			<script type='text/javascript'>
@@ -43,8 +44,11 @@
 			//Both passwords entered are the same
 			if($password1 == $password2) {
 				// Create new account
+				$pass = crypt($password1);
+				$recover = crypt($recovery);
+
 				$sql = "INSERT INTO USERS VALUES
-						(null, '".$email."','".$userName."','".$firstName."','".$lastName."','".$password1."')";
+						(null, '".$email."','".$userName."','".$firstName."','".$lastName."','".$pass."','".$recover."')";
 				$result = $conn->query($sql);
 
 				// Check if the query was successful

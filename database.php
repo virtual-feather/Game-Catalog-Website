@@ -16,7 +16,7 @@
 	<body>
 		<nav id="navbar">
 			<span class="profile">
-				<a href="#userProfile.html"><img class="userPFP" src="assets/pfp.jpg"></a>
+				<a href="#userProfile.php"><img class="userPFP" src="assets/pfp.jpg"></a>
 			</span>
 			<!-- Profile Fold -->
 

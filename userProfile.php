@@ -2,11 +2,6 @@
 <?php
 	include "php/dbConnect.php";
 	include "php/startSession.php";
-
-	// Check to see if someone is logged in
-	if($_SESSION["userName"] == "" || $_SESSION["password"] == "")
-		header("Location: index.php");
-	
 ?>
 
 <!DOCTYPE html>
@@ -42,8 +37,12 @@
 		<div class="mainContent">
 			<div class="container">
 				<div class="row">
-					
-
+					<div class="col-lg-12 col-md-12 col-sm-12">
+						<?php
+							// Display Game Collection
+							include 'php/displayGames.php';
+						?>
+					</div>
 				</div>
 			</div>
 		</div>

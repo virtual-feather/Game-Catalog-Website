@@ -37,8 +37,19 @@
 		<div class="mainContent">
 			<div class="container">
 				<div class="row">
-					
+					<div class="col-lg-12 col-md-12 col-sm-12">
+						<h1>[Name of Website]</h1>
+					</div>
 
+					<div class="col-lg-8 col-md-8 col-sm-8">
+						<h2>Build your collection online</h2>
+						<p>With an account, you are able to add games into your vitual collection!</p>
+					</div>
+
+					<div class="col-lg-4 col-md-4 col-sm-4">
+						<h2>NULL</h2>
+						<p></p>
+					</div>
 				</div>
 			</div>
 		</div>
