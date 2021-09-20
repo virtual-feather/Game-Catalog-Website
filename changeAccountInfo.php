@@ -1,7 +1,11 @@
+<?php
+	include "php/startSession.php";
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Game Database | Login</title>
+		<title>Game Database | About</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 		<script type="text/javascript" src="js/functions.js"></script>
@@ -16,10 +20,12 @@
 			<!-- Profile Fold -->
 
 			<span class="nav">
-				<a href="index.php">Home</a>
-				<a href="about.php">About</a>
-				<a href="database.php">Database</a>
-				<a href="login.html">Log in</a>
+<!--
+				<?php 
+					include "php/displayUserName.php";
+					include "php/displayNav.php";
+				?>
+-->
 			</span>
 
 			<span class="credit">
@@ -31,28 +37,24 @@
 		<div class="mainContent">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-6 col-md-6 col-sm-6">
-						<h1>Existing Users</h1>
+					<div class="col-lg-12 col-md-12 col-sm-12">
+						<?php
+						// Display username
+						echo "<h1>Welcome ".$_SESSION["userFullName"]."!</h1>";
+						echo "<h2>Your username is: ".$_SESSION["userName"]."</h2>";
+						?>
 
 						<form method="post" action="">
-							<label for="userName">Username:</label><br>
-							<input type="text" id="userName" name="userName">
+							<label for="password1">Enter your new password:</label><br>
+							<input type="password" name="password1">
 							<br><br>
-							<label for="userName">Password:</label><br>
-							<input type="password" id="password" name="password">
-							<p><a href="forgot.html">Forgot Username/Password</a></p>
-							<input type="submit" value="Login" formaction="php/login.php">
+							<label for="password2">Enter the password again:</label><br>
+							<input type="password" name="password2">
+							<br><br>
+							<input type="submit" value="Update Account" formaction="php/updateAccount.php">
 						</form>
 					</div>
-
-					<div class="col-lg-6 col-md-6 col-sm-6">
-						<h1>New Users</h1>
-
-						<form style="padding:100px;" action="newUser.html">
-							<input type="submit" value="Create New Account">
-						</form>
-					</div>
-					<!-- Form Fold -->
+					
 				</div>
 			</div>
 		</div>

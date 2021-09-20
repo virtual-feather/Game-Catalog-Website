@@ -1,5 +1,5 @@
 <?php
-	if($_SESSION["accountName"] != "") {
+	if(isset($_SESSION["accountName"])) {
 		echo '<p>'.$_SESSION["accountName"].'</p>';
 	}
 	else {

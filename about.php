@@ -15,7 +15,7 @@
 	<body>
 		<nav id="navbar">
 			<span class="profile">
-				<a href="#userProfile.html"><img class="userPFP" src="assets/pfp.jpg"></a>
+				<a href="#userProfile.php"><img class="userPFP" src="assets/pfp.jpg"></a>
 			</span>
 			<!-- Profile Fold -->
 
@@ -40,18 +40,8 @@
 					</div>
 
 					<div class="col-lg-8 col-md-8 col-sm-8">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+						<p>Designing and building this website used concepts from <i>Database Management Systems</i>, <i>Web Design</i>, and <i>Software Engineering</i>.</p>
+						<p>I created this website for video game collectors and enthusiests so they can have access to their collections when not home. Having this site enables those to check if they have a game in their collection when, for example, out scouting for more.</p>
 					</div>
 
 					<div class="col-lg-4 col-md-4 col-sm-4">
@@ -59,24 +49,8 @@
 					</div>
 
 					<div class="col-lg-12 col-md-12 col-sm-12">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+						<p>Visitors to the site without an account will have the option to view all the games stored in the database, as well as view users' personal collections.</p>
+						<p>Visitors to the site who have an account will be able to view and edit their personal collections, as well as message other users. Those with accounts will also be able to submit new games that are not in the database for other users to add to their collections.</p>
 					</div>
 
 					<div class="col-lg-12 col-md-12 col-sm-12">
@@ -84,14 +58,11 @@
 						<h1>Credits</h1>
 					</div>
 
-					<div class="col-lg-4 col-md-4 col-sm-4">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-						</p>
+					<div class="col-lg-6 col-md-6 col-sm-6">
+						<p>Website desgined and created by Brenden Monteleone.</p>
+					</div>
+					<div class="col-lg-6 col-md-6 col-sm-6">
+						<p></p>
 					</div>
 					
 				</div>

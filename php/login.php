@@ -1,17 +1,17 @@
 <?php
-	// Connect to db
+	// Include files
 	include "dbConnect.php";
+	include 'clearSession.php';
 	include "startSession.php";
 	include "alerts.php";
 
-	// Assign variables
+	// Assign variables 
 	$userName = $_POST["userName"];
-	$pass = $_POST["password"];
+	$enteredPass = $_POST["password"];
 
 	// See if the user exists in the database
-	$sql = "SELECT userFirstName, userLastName FROM USERS 
-			WHERE userName = '".$userName."'
-			AND userPassword = '".$pass."'";
+	$sql = "SELECT userFirstName, userLastName, userID, userPassword FROM USERS 
+			WHERE userName = '".$userName."'";
 	$result = $conn->query($sql);
 
 	$conn->close();
@@ -24,22 +24,35 @@
 	if( ($row = $result->fetch_assoc()) == 0 ) {
 		echo "
 			<script type='text/javascript'>
-				alert('Something went wrong, please try again.');
+				alert('Something went wrong, please try again.')
 				window.location.href = '../login.html';
 			</script>";
 	}
 
 	// Person does exist
-	else{
-		// Reset Session variables
-		$_SESSION["userName"] = $userName;
-		$_SESSION["password"] = $pass;
+	else{ 
+		// Check if passwords are the same
+		if(password_verify($enteredPass, $row["userPassword"])) {
 
-		// Get the user's name
-		$_SESSION["accountName"] = $row["userFirstName"]." ".$row["userLastName"];
+			// SET SESSION VARIABLES 			<<<
+			$_SESSION["userName"] = $userName;
+			$_SESSION["password"] = $pass;
+			$_SESSION["userID"] = $row["userID"];
 
-		// Information gathered, move to next page
-		header("Location: ../index.php");
+			// Get the user's name
+			$_SESSION["accountName"] = $row["userFirstName"]." ".$row["userLastName"];
+
+			// Information gathered, move to next page
+			header("Location: ../index.php");
+		}
+		// Password entered is not the same, return to page
+		else {
+			echo "
+			<script type='text/javascript'>
+				alert('Incorrect Password, please try again.')
+				window.location.href = '../login.html';
+			</script>";
+		}
 	}
 
 	// Close DB connection
