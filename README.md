@@ -4,8 +4,11 @@ Website allows users to maintain a virtual collection that is based on their per
 
 
 -----
+UPDATE 9/19/21
+- Fixed password hashing and storage
+- Implemented Forgot Username/Password page
+- Updated about.php
+
+-----
 UPDATE 9/18/21
 - Merged all initial files from patch-1 branch
-<!--
------
--->
