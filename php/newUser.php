@@ -5,6 +5,9 @@
 	// Include alert function
 	include "alerts.php";
 
+	// Include saved info file
+	include "savedInput.php";
+
 	// Connect to db
 	include "dbConnect.php";
 
@@ -16,6 +19,15 @@
 	$password1 = $_POST["password"];
 	$password2 = $_POST["password2"];
 	$recovery = $_POST["recovery"];
+
+	// Store the session in saved file
+	$_SESSION["loginfirstName"] = $firstName;
+	$_SESSION["loginlastName"] = $lastName;
+	$_SESSION["loginemail"] = $email;
+	$_SESSION["loginuserName"] = $userName;
+	$_SESSION["loginpassword1"] = $pas;
+	$_SESSION["loginpassword2"];
+	$_SESSION["loginrecovery"] = $recovery;
 
 	// Check to see if a user with that email exists in the DB
 	$sql = "SELECT userID FROM USERS WHERE 
@@ -32,7 +44,7 @@
 		echo "
 			<script type='text/javascript'>
 				alert('Please enter all fields!');
-				window.location.href = '../newUser.html';
+				window.location.href = '../registerNewUser.php';
 			</script>";
 	}
 
@@ -57,6 +69,9 @@
 
 				// Query successful!
 				else {
+					// Clear the savedInput session
+					include "clearSession.php";
+
 					// Alert that account was created
 					echo "
 						<script type='text/javascript'>
@@ -72,7 +87,7 @@
 				echo "
 					<script type='text/javascript'>
 						alert('Passwords did not match. Please try again.');
-						window.location.href = '../newUser.html';
+						window.location.href = '../registerNewUser.php';
 					</script>";
 			}
 		}//end creating an account
@@ -83,7 +98,7 @@
 			echo "
 				<script type='text/javascript'>
 					alert('A user with that email already exists. Please try again.');
-					window.location.href = '../newUser.html';
+					window.location.href = '../registerNewUser.php';
 				</script>";
 		}//end user dne
 
@@ -92,3 +107,4 @@
 	// Close DB Connection
 	$conn->close();
 ?>
+login

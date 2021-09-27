@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Game Database | Database</title>
+		<title>The Shelf | Database</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -16,7 +16,7 @@
 	<body>
 		<nav id="navbar">
 			<span class="profile">
-				<a href="#userProfile.php"><img class="userPFP" src="assets/pfp.jpg"></a>
+				<a href="#userProfilePage.php"><img class="userPFP" src="assets/pfp.jpg"></a>
 			</span>
 			<!-- Profile Fold -->
 
@@ -37,7 +37,8 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12 col-md-12 col-sm-12">
-						<h1>Explore the Game Database!</h1>
+						<h1>Explore the Database!</h1>
+						<hr>
 					</div>
 
 					<div class="col-lg-6 col-md-6 col-sm-6">
@@ -64,9 +65,9 @@
 						<br>
 						<form action="">
 							<h2>Search for Users</h2>
-							<i>Enter first and last name</i>
+							<i>Enter other user's username</i>
 							<br>
-							<input type="text" placeholder="Search User.." name="search">
+							<input type="text" placeholder="Enter username..." name="search">
 							<button type="submit" formaction="#findUser.php"><i class="fa fa-search"></i></button>
 							<br><br><br>
 						</form>
