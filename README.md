@@ -4,6 +4,13 @@ Website allows users to maintain a virtual collection that is based on their per
 
 
 -----
+UPDATE 8/26/21
+- NEW USERS: Content is saved if account creation fails
+- Began work implementing 'Edit Collection'
+- Name proposal: The Shelf
+- Updated site presentation
+
+-----
 UPDATE 9/19/21
 - Fixed password hashing and storage
 - Implemented Forgot Username/Password page
