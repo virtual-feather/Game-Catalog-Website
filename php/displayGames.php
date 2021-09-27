@@ -1,11 +1,12 @@
 <?php
 	// Include files
-	//include 'dbConnect.php';
+
 
 	// Store filter
 	$filter = '';
 
-	$sql = "SELECT userFirstName, gameName, consoleName 
+	// Check if the query was successful
+	$sql = "SELECT gameName, consoleName, GAMES.releaseDate, GAMES.description
 			FROM COLLECTION JOIN CONSOLE JOIN GAMES JOIN USERS 
 			WHERE COLLECTION.userID = USERS.userID 
 			AND COLLECTION.gameID = GAMES.gameID 
@@ -19,4 +20,5 @@
 
 	// Gather all data and display (Table Formation)
 	
+
 ?>

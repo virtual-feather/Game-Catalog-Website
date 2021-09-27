@@ -1,6 +1,6 @@
 body {
-	/*background: url("../assets/background.jpg");*/
-  background-color: #D8D7CF !important;
+	background: url("../assets/space.jpg");
+  /*background-color: #D8D7CF !important;*/
 }
 
 
@@ -60,11 +60,16 @@ body {
 }
 
 /* Navbar Credits */
-.credit > p{
+.credit > p {
 	position: absolute; bottom: -10px; left: 10px;
 	font-size: 8px;
 	font: serif;
 	color: #818181;
+}
+
+/* About Page Credits */
+.credits p {
+ margin: 0px !important; 
 }
 
 /* Genre Drop Down List ID */
@@ -92,13 +97,13 @@ body {
 
   border-radius: 2em 2em / 2em 2em;
   background-color: #000;
-  opacity: 75%;
+  opacity: 90%;
 }
 
 /* Main Page text styles */
 .mainContent h1{
   padding: 15px;
-  text-align: center;
+  text-align: left;
   color: #ffffff;
 }
 
@@ -114,6 +119,10 @@ body {
   padding-left: 15px;
   text-align: left;
   color: #ffffff;
+}
+
+.mainContent hr {
+  border-top: solid white;
 }
 
 /* Input designs */
