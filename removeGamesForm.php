@@ -40,7 +40,9 @@
 				<div class="row">
 					<div class="col-lg-12 col-md-12 col-sm-12">
 						<h1><?php echo $_SESSION["userName"]; ?>'s  Collection</h1>
-						<!-- FIX BELOW -->
+						<h2>Press the button to remove the game!</h2>
+						<hr>
+					<!-- FIX BELOW
 						<form method="post" id="filter" name="filter">
 							<label>Choose a filter</label>
 							<br>
@@ -55,10 +57,11 @@
 						<hr>
 						<br>
 						<br>
+					-->
 					</div>
 					<?php
 							// Store mode. DEFAULT: VIEW
-							$mode = 'view';
+							$mode = 'remove';
 
 							// Display Game Collection
 							include 'php/displayGames.php';

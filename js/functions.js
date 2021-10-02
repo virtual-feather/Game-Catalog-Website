@@ -1,37 +1,3 @@
-/*
-// Select Projects function
-function ddlselect() {
-  // Get elements and hide them
-  var None = document.getElementById("None");
-  var Python = document.getElementById("Python");
-  var Java = document.getElementById("Java");
-
-  Python.style.display = "none";
-  Java.style.display = "none";
-
-
-  // Not sure why, but it seems the variables
-  // need to be in a list to work properly
-  var choices = [Python, Java];
-
-  // Collect user selection
-  var d = document.getElementById("ddselect");
-  var choice = d.options[d.selectedIndex].text;
-
-  // Check if the selection is empty
-  if(choice == "--Select Language--"){
-    None.style.display = "flex";
-  }
-  else{
-    None.style.display = "none";
-  }
-  
-  // Search document for IDs with the choice and display
-  var result = document.getElementById(choice);
-  result.style.display = "flex";
-}//end ddlselect
-*/
-
 // Determine whether to unhide the genre ddl
 function genreToggle() {
   // Get secondary list elements and hide
@@ -55,4 +21,9 @@ function genreToggle() {
   var result = document.getElementById(choice);
   result.style.display = "inline";
   console.log("Genre List Visible")
+}
+
+// Load webpage once a filter is selected
+function reloadPage(page) {
+  location.reload(page);
 }

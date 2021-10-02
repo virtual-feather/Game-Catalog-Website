@@ -44,25 +44,42 @@
 					</div>
 
 					<div class="col-lg-6 col-md-6 col-sm-6">
-						<h2>Add Games</h2>
+						<h2>Adding Games</h2>
 						<form action="addGamesForm.php">
-							<input type="submit" value="Add">
+							<label>Select Console:</label>
+							<select>
+								<?php 
+									// Return data for selector list
+
+								?>
+							</select>
+							<br>
+
+							<label>Select Game:</label>
+							<select>
+								<?php 
+									// Return data for selector list
+
+								?>
+							</select>
+							<br>
+
+							<br>
+							<input type="submit" value="Add Game">
 						</form>
 					</div>
 
 					<div class="col-lg-6 col-md-6 col-sm-6">
-						<h2>Remove Games</h2>
+						<h2>Removing Games</h2>
 						<form action="removeGamesForm.php">
-							<input type="submit" value="Remove">
+							<br><br>
+							<input type="submit" value="Remove Games">
 						</form>
 					</div>
 
 					<div class="col-lg-12 col-md-12 col-sm-12">
-						<br><br>
-						<h1>Edit Profile</h1>
-						<hr>
+						<br>
 					</div>
-
 
 				</div>
 			</div>
