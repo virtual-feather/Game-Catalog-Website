@@ -55,7 +55,7 @@
 								<option value="releaseDate">Release Date</option>
 							</select>
 							<br><br>
-							<input type="submit" name="Submit" formaction="#displayGames.php">
+							<input type="submit" value="Search Database" formaction="#displayGames.php">
 							<br><br>
 						</form>
 					</div>
@@ -73,6 +73,11 @@
 						</form>
 					</div>
 					<!-- User Search Form Fold -->
+
+					<?php // vvv DO THIS vvv
+						// Adding Games to the DB (Users only)
+						//include "addingGames.php";
+					?>
 
 				</div>
 			</div>

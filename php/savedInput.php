@@ -2,7 +2,7 @@
 	include 'startSession.php';
 
 	// Initialize
-	if(isset($_SESSION["loginfirstName"])) {
+	if(isset($_SESSION["loginuserName"])) {
 		$_SESSION["loginfirstName"];
 		$_SESSION["loginlastName"];
 		$_SESSION["loginemail"];
