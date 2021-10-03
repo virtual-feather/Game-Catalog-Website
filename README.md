@@ -3,6 +3,12 @@ Website allows users to maintain a virtual collection that is based on their per
 
 
 -----
+UPDATE 10/3/21
+- Implemented adding games to collections
+	- Implemented search functionality
+- Add filter functionality to 'View Collection' page
+
+-----
 UPDATE 10/02/21
 - Implemented basic version of 'View Collection'
 	- Filter variable supported (needs work)
