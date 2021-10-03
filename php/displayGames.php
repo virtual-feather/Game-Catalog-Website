@@ -3,8 +3,8 @@
 
 
 	// Store filter (FIX THIS!)
-	if(isset($_POST["filter"]))
-		$filter = $_POST["filter"];
+	if(isset($_SESSION["theFilter"]))
+		$filter = $_SESSION["theFilter"];
 	else
 		$filter = 'gameName ASC';
 
@@ -33,26 +33,22 @@
 
 			if($mode == 'view') {
 				echo "			<h5 class='card-title'>".$row["gameName"]."</h5>\n"
+				."				<p class='card-text'>Genre: ".$row["genre"]."</p>\n"
 				."				<p class='card-text'>".$row["description"]."</p>\n"
 				."		</div>\n"
 				."		</div>\n"
 				."	</div>\n";
-			}
+			}//end view
+
 			else if($mode == 'remove') {
-				echo "			<h5 class='card-title'></h5>\n"	
-					."			<form method='post' action='php/removeGame.php'>\n"	// Implement removeGame.php	
+				echo "			<h5 class='card-title'>Click to remove!</h5>\n"	
+					."			<form method='post' action='php/removeGame.php'>\n"
 					."				<input type='Submit' value='".$row["gameName"]."' name='remove'>\n"	
 					."			</form>"
 					."		</div>\n"
 					."	</div>\n"
 					."</div>\n";
-			}
-			else if($mode == 'add') {
-				echo "			<a href='' class='btn btn-primary'>Add Game</a>\n"	// Implement addGame.php
-					."		</div>\n"
-					."	</div>\n"
-					."</div>\n";
-			}
+			}//end remove
 		}//end While
 	}//end if
 

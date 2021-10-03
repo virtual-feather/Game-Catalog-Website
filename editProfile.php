@@ -46,34 +46,18 @@
 					<div class="col-lg-6 col-md-6 col-sm-6">
 						<h2>Adding Games</h2>
 						<form action="addGamesForm.php">
-							<label>Select Console:</label>
-							<select>
-								<?php 
-									// Return data for selector list
-
-								?>
-							</select>
 							<br>
-
-							<label>Select Game:</label>
-							<select>
-								<?php 
-									// Return data for selector list
-
-								?>
-							</select>
-							<br>
-
-							<br>
-							<input type="submit" value="Add Game">
+							<input type="submit" value="Add Games">
+							<br><br>
 						</form>
 					</div>
 
 					<div class="col-lg-6 col-md-6 col-sm-6">
 						<h2>Removing Games</h2>
 						<form action="removeGamesForm.php">
-							<br><br>
+							<br>
 							<input type="submit" value="Remove Games">
+							<br><br>
 						</form>
 					</div>
 
