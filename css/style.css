@@ -19,7 +19,7 @@ body {
   	padding-top: 20px;
   	transition: 0.5s;
 
-	-webkit-background-size: 100%;
+	  -webkit-background-size: 100%;
   	-moz-background-size: 100%;
   	-o-background-size: 100%;
   	background-size: 100%;
@@ -142,7 +142,7 @@ body {
   font-size: 12px;
 }
 
-.mainContent form > i{
+.mainContent form > i {
   position: relative; top: -13px;
   opacity: 50%;
   font-size: 12px;
@@ -157,9 +157,18 @@ input[type=password]{
   border-radius: 1em 1em / 1em 1em;
 }
 
-.mainContent input[type=submit]{
+.mainContent input[type=submit] {
   border-style: solid black;
   border-radius: 1em 1em / 1em 1em;
+  white-space: normal;
+}
+
+.mainContent input[type=radio] {
+  margin-left: 10px;
+}
+
+.viewForm > form {
+  text-align: left !important;
 }
 
 /* Button Formats */
@@ -175,6 +184,23 @@ input[type=password]{
 	border-radius: 4em 4em / 4em 4em;
   box-shadow: 0 4px 8px 0 rgba(0.5, 0, 0, 0.1), 0 6px 20px 0 rgba(0.5, 0, 0, 0.19);
 }
+
+/* BOOTSTRAP EDITS */
+.card-img-top {
+  max-height: 230px !important;
+  image-rendering: optimizeSpeed;
+  object-fit: contain;
+  object-position:50% 50%;
+  background-color: #000;
+}
+
+.card-text {
+  padding: 0px !important;
+  padding-top: -10px !important;
+  padding-left: 0px !important;
+  margin-top: 0px !important;
+}
+
 
 /* ===========
       Media

@@ -74,10 +74,38 @@
 					</div>
 					<!-- User Search Form Fold -->
 
-					<?php // vvv DO THIS vvv
-						// Adding Games to the DB (Users only)
-						//include "addingGames.php";
+					<?php
+						// Adding Games to the DB (MODS only)
+
+						// Check if the user is a mod
+						if(isset($_SESSION["userStatus"])) {
+							if($_SESSION["userStatus"] == 1) {
+								// Display option to add games/consoles to the database
+								echo "	<div class='col-lg-12 col-md-12 col-sm-12'>\n"
+								."			<br><br>"
+								."			<h1>Edit the Database</h1>\n"
+								."			<hr>\n"
+								."		</div>\n"
+								."		<div class='col-lg-6 col-md-6 col-sm-6'>\n"
+								."			<h2>Add a Game</h2>\n"
+								."			<form action='addGametoDBForm.php'>\n"
+								."				<br>\n"
+								."				<input type='submit' value='Add Game to Database'>\n"
+								."				<br><br>\n"
+								."			</form>\n"
+								."		</div>\n"
+								."		<div class='col-lg-6 col-md-6 col-sm-6'>\n"
+								."			<h2>Add a Console</h2>\n"
+								."			<form action='addConsoletoDBForm.php'>\n"
+								."				<br>\n"
+								."				<input type='submit' value='Add Console to Database'>\n"
+								."				<br><br>\n"
+								."			</form>\n"
+								."		</div>";
+							}
+						}
 					?>
+					<!-- Adding to Database Fold -->
 
 				</div>
 			</div>

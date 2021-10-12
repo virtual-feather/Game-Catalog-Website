@@ -23,6 +23,7 @@
 	$userName = $_SESSION["userName"];
 	$pass = $_SESSION["password"];
 	$userID = $_SESSION["userID"];
+	$userStatus = $_SESSION["userStatus"];
 	$accountName = $_SESSION["accountName"];
 
 	// Clear session
@@ -32,6 +33,8 @@
 	$_SESSION["userName"] = $userName;
 	$_SESSION["password"] = $pass;
 	$_SESSION["userID"] = $userID;
+	$_SESSION["userStatus"] = $userStatus;
+
 
 	// Get the user's name
 	$_SESSION["accountName"] = $accountName;
