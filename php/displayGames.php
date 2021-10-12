@@ -1,40 +1,72 @@
 <?php
 	// Include files
+	include 'debugging.php';
+	include 'displayGameQueries.php'; // Implement different queries based on sorting options
 
-
-	// Store filter (FIX THIS!)
+	// Store filter variable
 	if(isset($_SESSION["theFilter"]))
 		$filter = $_SESSION["theFilter"];
 	else
 		$filter = 'gameName ASC';
 
-	// Check if the query was successful
-	$sql = "SELECT gameName, consoleName, GAMES.releaseDate, GAMES.description, GAMES.genre
+	// Store sorting variable
+	if(isset($_SESSION["sorting"])) {
+		$sort = $_SESSION["sorting"];
+
+		// Query with sorting
+		$sql = "SELECT gameName, consoleName, GAMES.releaseDate, GAMES.description, GAMES.genre, imgPath
 			FROM COLLECTION JOIN CONSOLE JOIN GAMES JOIN USERS 
 			WHERE COLLECTION.userID = USERS.userID 
 			AND COLLECTION.gameID = GAMES.gameID 
 			AND COLLECTION.consoleID = CONSOLE.ConsoleID
 			AND USERS.userID = '".$_SESSION["userID"]."'
+			AND GAMES.consoleID = '".$sort."'
 			ORDER BY ".$filter.";";
+	}
+	
+	else {
+		// Query without game sorting
+		$sql = "SELECT gameName, consoleName, GAMES.releaseDate, GAMES.description, GAMES.genre, imgPath
+				FROM COLLECTION JOIN CONSOLE JOIN GAMES JOIN USERS 
+				WHERE COLLECTION.userID = USERS.userID 
+				AND COLLECTION.gameID = GAMES.gameID 
+				AND COLLECTION.consoleID = CONSOLE.ConsoleID
+				AND USERS.userID = '".$_SESSION["userID"]."'
+				ORDER BY ".$filter.";";
+	}
 	$result = $conn->query($sql);
 
 	// Check if the query was successful
-	if (!$result)
+	if (!$result) {
 		trigger_error('Invalid query: ' . $conn->error);
+	}
 
 	// Gather all data and display (Table Formation) -> IMCORPORATE PAGINATION/DYNAMIC DISPLAY
 	// https://getbootstrap.com/docs/4.2/components/card/
+	$count = 0;
+
 	if($result->num_rows > 0) {
 		while($row = $result->fetch_assoc()) {
+			toConsole($count);
+
+			// Check the count
+			if($count == 4){
+				echo "	<div class='col-lg-12 col-md-12 col-sm-12'>\n"
+				."			<br><br>\n"
+				."		</div>";
+
+				$count = 0;
+			}
+
 			echo "	<div class='col-lg-3 col-md-6 col-sm-6>'>\n"
 				."		<div class='card'>\n"
-				."			<img src='assets/question.jpg' class='card-img-top' alt='Error'>\n"	// CHANGE IMAGE PATH!
+				."			<img src='".$row["imgPath"]."' class='card-img-top' alt='Error'>\n" 	// Update unknown images
 				."			<div class='card-body'>\n";
 
 			if($mode == 'view') {
 				echo "			<h5 class='card-title'>".$row["gameName"]."</h5>\n"
+				."				<p class='card-text'>Console: ".$row["consoleName"]."</p>\n"
 				."				<p class='card-text'>Genre: ".$row["genre"]."</p>\n"
-				."				<p class='card-text'>".$row["description"]."</p>\n"
 				."		</div>\n"
 				."		</div>\n"
 				."	</div>\n";
@@ -49,6 +81,9 @@
 					."	</div>\n"
 					."</div>\n";
 			}//end remove
+
+			// Add to count
+			$count+=1;
 		}//end While
 	}//end if
 
