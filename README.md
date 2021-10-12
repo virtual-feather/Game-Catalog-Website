@@ -3,6 +3,12 @@ Website allows users to maintain a virtual collection that is based on their per
 
 
 -----
+UPDATE 10/11/21
+- Implemented console sorting when viewing collection
+- Began implementing adding games to the database forms
+	- MOD only feature
+
+-----
 UPDATE 10/3/21
 - Implemented adding games to collections
 	- Implemented search functionality
