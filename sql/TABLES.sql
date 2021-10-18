@@ -1,3 +1,4 @@
+/* Finish Table creations */
 CREATE TABLE 'USERS' (
 	'userID' INT NULL AUTO_INCREMENT,
 	'userEmail' VARCHAR(100) NOT NULL,
@@ -7,3 +8,6 @@ CREATE TABLE 'USERS' (
 	PRIMARY KEY (`userID`)
 	);
 
+CREATE TABLE 'GENRES' {
+
+}
