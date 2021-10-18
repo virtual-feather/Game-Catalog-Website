@@ -9,31 +9,54 @@
 	else
 		$filter = 'gameName ASC';
 
-	// Store sorting variable
+	// Create basic query
+	$sql = "SELECT gameName, consoleName, GAMES.releaseDate, GAMES.description, genreName, imgPath
+		FROM COLLECTION JOIN CONSOLE JOIN GAMES JOIN USERS JOIN GENRES
+		WHERE COLLECTION.userID = USERS.userID 
+		AND COLLECTION.gameID = GAMES.gameID 
+		AND COLLECTION.consoleID = CONSOLE.ConsoleID
+		AND GENRES.genreID = GAMES.genreID
+		AND USERS.userID = '".$_SESSION["userID"]."'";
+
+	// Add sorting variable
 	if(isset($_SESSION["sorting"])) {
 		$sort = $_SESSION["sorting"];
 
 		// Query with sorting
-		$sql = "SELECT gameName, consoleName, GAMES.releaseDate, GAMES.description, GAMES.genre, imgPath
-			FROM COLLECTION JOIN CONSOLE JOIN GAMES JOIN USERS 
-			WHERE COLLECTION.userID = USERS.userID 
-			AND COLLECTION.gameID = GAMES.gameID 
-			AND COLLECTION.consoleID = CONSOLE.ConsoleID
-			AND USERS.userID = '".$_SESSION["userID"]."'
-			AND GAMES.consoleID = '".$sort."'
-			ORDER BY ".$filter.";";
+		$sql = $sql." AND GAMES.consoleID = '".$sort."'";
 	}
+
+	// Create a genre list
+	$genreList = array();
+
+	// Collect all genres into the list
+	$count = 1;
+
+	if(isset($_SESSION["hasGenre"]) && $_SESSION["hasGenre"]) {
+		$sql = $sql." AND GAMES.genreID in (
+				SELECT DISTINCT genreID
+				FROM GENRES
+				WHERE ";
+		
+		while(isset($_SESSION["genre".strval($count)])) {
+			array_push($genreList, $_SESSION["genre".strval($count)]);
+			$count++;
+		}
 	
-	else {
-		// Query without game sorting
-		$sql = "SELECT gameName, consoleName, GAMES.releaseDate, GAMES.description, GAMES.genre, imgPath
-				FROM COLLECTION JOIN CONSOLE JOIN GAMES JOIN USERS 
-				WHERE COLLECTION.userID = USERS.userID 
-				AND COLLECTION.gameID = GAMES.gameID 
-				AND COLLECTION.consoleID = CONSOLE.ConsoleID
-				AND USERS.userID = '".$_SESSION["userID"]."'
-				ORDER BY ".$filter.";";
+		// Add the genre to the expression
+		foreach($genreList as $genreID) {
+			$sql = $sql." (genreID = ".$genreID.") OR";
+		}
+		
+		$sql = substr($sql, 0, -2);
+
+		$sql = $sql."GROUP BY genreID)";
 	}
+
+	// Add ORDER BY filter to the end of the SQL Statement
+	$sql = $sql." ORDER BY ".$filter.";";
+
+	// Query
 	$result = $conn->query($sql);
 
 	// Check if the query was successful
@@ -66,7 +89,7 @@
 			if($mode == 'view') {
 				echo "			<h5 class='card-title'>".$row["gameName"]."</h5>\n"
 				."				<p class='card-text'>Console: ".$row["consoleName"]."</p>\n"
-				."				<p class='card-text'>Genre: ".$row["genre"]."</p>\n"
+				."				<p class='card-text'>Genre: ".$row["genreName"]."</p>\n"
 				."		</div>\n"
 				."		</div>\n"
 				."	</div>\n";
@@ -95,4 +118,5 @@
 
 	// Close db connection
 	// - closes in userProfile.php
+
 ?>
