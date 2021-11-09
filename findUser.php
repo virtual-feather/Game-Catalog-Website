@@ -1,14 +1,17 @@
 <?php
+    // Start the session and clear the superfluous content
+	include "php/dbConnect.php";
 	include "php/startSession.php";
-	include "php/loggedIn.php";
 ?>
+
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Game Database | Register</title>
+		<title>The Shelf | Database</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-		<script type="text/javascript" src="js/functions.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<!-- <script type="text/javascript" src="js/functions.js"></script> -->
 	</head>
 	<!-- Header Fold -->
 
@@ -19,7 +22,7 @@
 					include "php/displayProfileImg.php";
 
 					echo displayProfileImg();
-				?>
+				?>			
 			</span>
 			<!-- Profile Fold -->
 
@@ -39,14 +42,31 @@
 		<div class="mainContent">
 			<div class="container">
 				<div class="row">
+					<?php
+						// Clear supplements
+						include "php/clearSessionSupplements.php";
+
+						// Perform a quick query with the selected name
+						include "php/grabUserDataFromSearch.php";
+
+						// Display user's information
+						echo "<div class='col-lg-12 col-md-12 col-sm-12'>".
+								"<h1>".$_GET['search']."'s Collection</h1>".
+								"<hr><br>".
+							 "</div>";
+
+						// Store mode. DEFAULT: VIEW
+						$mode = 'view';
+
+						// Grab user information to view
+						include "php/displayGames.php";
+						
+					?>
+
 					<div class="col-lg-12 col-md-12 col-sm-12">
-						<form method="post" action="">
-							<h2>Add a Console to the Database</h2>
-							<hr>
-							
-						</form>
+						<br>
+						<br>
 					</div>
-					<!-- Form Fold -->
 				</div>
 			</div>
 		</div>
@@ -60,4 +80,8 @@
 	</footer>
 	<!-- Footer Fold -->
 
+	<?php
+		// Close Connection
+		$conn->close()
+	?>
 </html>

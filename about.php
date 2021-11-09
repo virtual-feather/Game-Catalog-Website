@@ -1,5 +1,10 @@
 <?php
 	include "php/startSession.php";
+
+	if(isset($_SESSION["userName"]))
+		include "php/clearSessionSupplements.php";
+	else
+		include "php/clearSession.php";
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +20,11 @@
 	<body>
 		<nav id="navbar">
 			<span class="profile">
-				<a href="#userProfilePage.php"><img class="userPFP" src="assets/pfp.jpg"></a>
+				<?php 
+					include "php/displayProfileImg.php";
+
+					echo displayProfileImg();
+				?>			
 			</span>
 			<!-- Profile Fold -->
 
@@ -41,8 +50,8 @@
 					</div>
 
 					<div class="col-lg-8 col-md-8 col-sm-8">
-						<p>Designing and building this website used concepts from <i>Database Management Systems</i>, <i>Web Design</i>, and <i>Software Engineering</i>.</p>
-						<p>I created The Shelf for video game collectors and enthusiests so they can have access to their collections when not home. Having this site enables those to check if they have a game in their collection when, for example, out scouting for more.</p>
+						<p class="paragraph">Designing and building this website used concepts from <i>Database Management Systems</i>, <i>Web Design</i>, and <i>Software Engineering</i>.</p>
+						<p class="paragraph">I created The Shelf for video game collectors and enthusiests so they can have access to their collections when not home. Having this site enables those to check if they have a game in their collection when, for example, out scouting for more.</p>
 					</div>
 
 					<div class="col-lg-4 col-md-4 col-sm-4">
@@ -50,8 +59,8 @@
 					</div>
 
 					<div class="col-lg-12 col-md-12 col-sm-12">
-						<p>Visitors to The Shelf without an account will have the option to view all the games stored in the database, as well as view users' personal collections.</p>
-						<p>Visitors to The Shelf who have an account will be able to view and edit their personal collections, as well as message other users. Those with accounts will also be able to submit new games that are not in the database for other users to add to their collections.</p>
+						<p class="paragraph">Visitors to The Shelf without an account will have the option to view all the games stored in the database, as well as view users' personal collections.</p>
+						<p class="paragraph">Visitors to The Shelf who have an account will be able to view and edit their personal collections, as well as message other users. Those with accounts will also be able to submit new games that are not in the database for other users to add to their collections.</p>
 					</div>
 
 					<div class="col-lg-12 col-md-12 col-sm-12">

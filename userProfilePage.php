@@ -1,11 +1,23 @@
 <?php
+	// Include Files
+	include "php/dbConnect.php";
 	include "php/startSession.php";
 	include "php/loggedIn.php";
+	include "php/viewingFunctions.php";
+
+	// Check if the searched variable is set
+	if(isset($_SESSION["enteredUN"]))
+		unset($_SESSION["enteredUN"]);
+
+    // Get the userID we're viewing
+    if(isset($_SESSION["userID"]) )
+        $userID = $_SESSION["userID"];
 ?>
+
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Game Database | Register</title>
+		<title>The Shelf | Collection</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 		<script type="text/javascript" src="js/functions.js"></script>
@@ -39,14 +51,18 @@
 		<div class="mainContent">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-12 col-md-12 col-sm-12">
-						<form method="post" action="">
-							<h2>Add a Console to the Database</h2>
-							<hr>
-							
-						</form>
-					</div>
-					<!-- Form Fold -->
+                    <?php
+                        // Store the mode
+                        $mode = "view";
+
+                        // Display User's Profile
+                        displayProfile($mode, $userID, $conn);
+
+                        // Clear Session supplements
+                        include "php/clearSessionSupplements.php";
+
+                    ?>
+
 				</div>
 			</div>
 		</div>
@@ -61,3 +77,8 @@
 	<!-- Footer Fold -->
 
 </html>
+
+<?php
+	// Close DB Connection
+	$conn->close();
+?>

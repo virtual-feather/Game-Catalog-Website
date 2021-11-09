@@ -22,7 +22,11 @@
 	<body>
 		<nav id="navbar">
 			<span class="profile">
-				<a href="#userProfilePage.php"><img class="userPFP" src="assets/pfp.jpg"></a>
+				<?php 
+					include "php/displayProfileImg.php";
+
+					echo displayProfileImg();
+				?>
 			</span>
 			<!-- Profile Fold -->
 

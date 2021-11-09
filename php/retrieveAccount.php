@@ -22,7 +22,7 @@
 		echo "
 			<script type='text/javascript'>
 				alert('No account with associated email, please try again.')
-				window.location.href = '../forgot.html';
+				window.location.href = '../forgot.php';
 			</script>";
 	}
 
@@ -55,7 +55,7 @@
 			echo "
 			<script type='text/javascript'>
 				alert('Invalid recovery pin, please try again.')
-				window.location.href = '../forgot.html';
+				window.location.href = '../forgot.php';
 			</script>";
 		}
 	}

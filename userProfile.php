@@ -4,6 +4,10 @@
 	include "php/startSession.php";
 	include "php/loggedIn.php";
 	include "php/viewingFunctions.php";
+
+	// Check if the searched variable is set
+	if(isset($_SESSION["enteredUN"]))
+		unset($_SESSION["enteredUN"]);
 ?>
 
 <!DOCTYPE html>
@@ -13,13 +17,18 @@
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 		<script type="text/javascript" src="js/functions.js"></script>
+		
 	</head>
 	<!-- Header Fold -->
 
 	<body>
 		<nav id="navbar">
 			<span class="profile">
-				<a href="userProfilePage.php"><img class="userPFP" src="assets/pfp.jpg"></a>
+				<?php 
+					include "php/displayProfileImg.php";
+
+					echo displayProfileImg();
+				?>
 			</span>
 			<!-- Profile Fold -->
 
@@ -41,19 +50,21 @@
 				<div class="row">
 					<div class="col-lg-12 col-md-12 col-sm-12">
 						<h1><?php echo $_SESSION["userName"]; ?>'s  Collection</h1>
+
 						<div class="viewForm">
 							<!-- FORM DATA GOES TO ACTION -->
 							<form method="post" action="php/updateViewGameSession.php">
-								<!-- Filters (FIX THESE)-->
-								<label>Choose a filter: </label>
+								<!-- Filters -->
+								<label class="title">Choose a Sorting Option: </label>
 								<select name="filter">
-									<option value="gameName ASC">Ascending</option>
-									<option value="gameName DESC">Descending</option>
+									<option value="gameName ASC">Name Ascending</option>
+									<option value="gameName DESC">Name Descending</option>
+									<option value="GAMES.releaseDate">Release Date Ascending</option>
 								</select>
 								<br>
 
 								<!-- Sorting (Ensure values are correct later) -->
-								<label>Choose a Console: </label>
+								<label class="title">Choose a Console: </label>
 								<select name="sort">
 									<option value="NOSORT">All Consoles</option>
 									<?php
@@ -63,91 +74,12 @@
 								</select>
 								<br>
 
-								<!-- Genre Filters [Add and Implement]-->
-								<label>Select Genre Filter: </label>
+								<!-- Genre Filters -->
+								<label class="title">Select Genre Filter: </label>
 								<?php
 									// Get rows of genres in user's collection
 									getGenreList($_SESSION["userID"], $conn);
 								?>
-
-<!--
-								<label>Sort by Console: </label>
-								<br>
-
-								<input type="radio" id="NOSORT" name="sort" value="NOSORT" checked="checked">
-								<label for="NOSORT">All Consoles</label>
-
-								
-								<input type="radio" id="NES" name="sort" value="NES">
-								<label for="NES">NES</label>
-
-								<input type="radio" id="SNES" name="sort" value="SNES">
-								<label for="SNES">SNES</label>
-
-								<input type="radio" id="N64" name="sort" value="N64">
-								<label for="N64">N64</label>
-
-								<input type="radio" id="GC" name="sort" value="GC">
-								<label for="GC">Gamecube</label>
-
-								<input type="radio" id="WII" name="sort" value="4">
-								<label for="WII">Wii</label>
-
-								<input type="radio" id="WIIu" name="sort" value="2">
-								<label for="WIIu">Wii U</label>
-
-								<input type="radio" id="SWITCH" name="sort" value="3">
-								<label for="SWITCH">Switch</label>
-								<br>
-
-								
-								<input type="radio" id="GB" name="sort" value="GB">
-								<label for="GB">Game Boy</label>
-
-								<input type="radio" id="VB" name="sort" value="VB">
-								<label for="VB">Virtual Boy</label>
-
-								<input type="radio" id="GBC" name="sort" value="GBC">
-								<label for="GBC">Game Boy Color</label>
-
-								<input type="radio" id="GBA" name="sort" value="GBA">
-								<label for="GBA">Game Boy Advanced</label>
-
-								<input type="radio" id="DS" name="sort" value="DS">
-								<label for="DS">DS</label>
-
-								<input type="radio" id="3DS" name="sort" value="1">
-								<label for="3DS">3DS</label>
-								<br>
-
-								
-								<input type="radio" id="PS1" name="sort" value="PS1">
-								<label for="PS1">Playstation 1</label>
-
-								<input type="radio" id="PS2" name="sort" value="PS2">
-								<label for="PS2">Playstation 2</label>
-
-								<input type="radio" id="PS3" name="sort" value="PS3">
-								<label for="PS3">Playstation 3</label>
-
-								<input type="radio" id="PS4" name="sort" value="PS4">
-								<label for="PS4">Playstation 4</label>
-
-								<input type="radio" id="PS5" name="sort" value="PS5">
-								<label for="PS5">Playstation 5</label>
-
-								
-								<input type="radio" id="PSP" name="sort" value="PSP">
-								<label for="PSP">Playstation Portable</label>
-
-								<input type="radio" id="PSV" name="sort" value="PSV">
-								<label for="PSV">Playstation Vita</label>
-								<br>
-
-								
-
-
--->
 								<br>
 								<input type="Submit" value="Go!">							
 							</form>						
@@ -166,16 +98,20 @@
 								// Filters
 								if(isset($_SESSION["theFilter"])) {
 									if($_SESSION["theFilter"] == "gameName ASC")
-										echo "<code>Ascending</code>";
+										echo "<code>Name Ascending</code>";
+									elseif($_SESSION["theFilter"] == "gameName DESC")
+										echo "<code>Name Descending</code>";
 									else
-										echo "<code>Descending</code>";
+										echo "<code>Release Date Ascending</code>";
 								}
 
 								// Consoles
 								if(isset($_SESSION["sorting"]))
-									echo "<code>".getConsoleName($_SESSION["sorting"], $conn)."</code>";
+									echo "<code>| ".getConsoleName($_SESSION["sorting"], $conn)."</code>";
+								else
+									echo "<code>| All Consoles</code>";
 
-								// Genre <-- Fix this
+								// Genre
 								// Create a genre list
 								$genreList = array();
 
@@ -191,7 +127,7 @@
 
 								// Add the genre to the expression
 								foreach($genreList as $genreID) 
-									echo "<code>".convertGenreID($genreID, $conn)."</code>";
+									echo "<code>| ".convertGenreID($genreID, $conn)."</code>";
 								
 								echo "</p>";
 							}
@@ -199,7 +135,6 @@
 					</div>
 
 					<?php
-						
 						// Store mode. DEFAULT: VIEW
 						$mode = 'view';
 
@@ -209,7 +144,20 @@
 						// Clear the superfluous session variables
 						include 'php/clearSessionSupplements.php';
 					?>
+					
 					<div class="col-lg-12 col-md-12 col-sm-12">
+					<!--
+						<ul class="simple-list">
+							<li><a href="javascript:ajaxpage('index.php', 'rightcolumn');">home</a></li>         
+							<li><a href="javascript:ajaxpage('phpcontents/5.php', 'rightcolumn');">about us</a></li>
+							<li><a href="javascript:ajaxpage('phpcontents/6.php', 'rightcolumn');">blog </a></li>
+							<li><a href="javascript:ajaxpage('phpcontents/7.php', 'rightcolumn');">contact</a></li>
+						</ul> 
+
+						<div id="rightcolumn">
+							
+						</div>
+					-->
 						<br>
 						<br>
 					</div>
