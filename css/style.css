@@ -92,7 +92,7 @@ body {
 
 .filterTab {
   margin-top: -70px !important;
-  margin-bottom: 50px !important;
+  margin-bottom: 30px !important;
 }
 
 .mainContent {
@@ -102,7 +102,7 @@ body {
 
   border-radius: 2em 2em / 2em 2em;
   background-color: #000;
-  opacity: 90%;
+  opacity: 95%;
 }
 
 /* Main Page text styles */
@@ -173,12 +173,46 @@ input[type=password]{
 }
 
 .mainContent code {
-  padding-left: 5px;
+  padding-left: 4px;
   padding-right: 10px;
+}
+
+p.paragraph {
+  text-indent: 1cm;
 }
 
 .viewForm > form {
   text-align: left !important;
+}
+
+.viewForm > form > label.title {
+  font-weight: bold !important;
+}
+
+.gameDisplay {
+  background-color: #000;
+}
+
+.profileBody > code {
+  color: #ffffff;
+  padding-bottom: 10px;
+}
+
+.profileBody > h1 {
+  padding-bottom: 0px;
+  padding-left: 0px;
+}
+
+.profileBody > a {
+  font-size: 10px;
+  padding-top: 0px;
+}
+
+.profileImg > img {
+  position: relative;
+  width: 100%;
+  border-radius: 2em 2em / 2em 2em;
+  border: 1px solid darkgray;
 }
 
 /* Button Formats */
@@ -193,24 +227,88 @@ input[type=password]{
 	height: 65px;
 	border-radius: 4em 4em / 4em 4em;
   box-shadow: 0 4px 8px 0 rgba(0.5, 0, 0, 0.1), 0 6px 20px 0 rgba(0.5, 0, 0, 0.19);
+  opacity: 100%;
+  transition: .3s ease;
+}
+
+.userPFP:hover {
+  opacity: 80%;
+  transition: .3s ease;
 }
 
 /* BOOTSTRAP EDITS */
+.card {
+  background-color: #000 !important;
+}
+
 .card-img-top {
   max-height: 230px !important;
   image-rendering: optimizeSpeed;
   object-fit: contain;
   object-position:50% 50%;
+  /*background-color: #E9E9E9;*/
   background-color: #000;
 }
 
-.card-text {
+.card-title {
+  font-weight: bolder;
+  font-size: 15px;
+  color: #E9E9E9;
+}
+
+.card-body > form {
+  border: none;
+  /*background-color: #E9E9E9;*/
+}
+
+p.card-text {
   padding: 0px !important;
   padding-top: -10px !important;
   padding-left: 0px !important;
   margin-top: 0px !important;
+  margin-bottom: 5px !important;
+  color: #E9E9E9 !important;
+  font-size: 14px !important;
 }
 
+/* =========
+      IDs
+   ========= */
+/* Searching Hint Divs */
+div#userHint {
+  z-index: 999;
+  color: #fff;
+  /*
+  position: relative;
+  right: -737px;
+  top: -55px;
+  */
+  position: absolute;
+  top: 290px;
+  right: 275px;
+  height: auto;
+  width: 200px;
+  border: 0.5px solid azure;
+  max-height: 95px;
+  max-width: 200px;
+  overflow: auto;
+}
+
+#userHint > p {
+  /*background-color: azure;*/
+  font-size: 18px;
+  margin: 0px !important;
+  border: 1px solid black;
+  color: black;
+  padding: 0px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  max-width: 200px;
+}
+
+#userHint p > a {
+  color: azure;
+}
 
 /* ===========
       Media

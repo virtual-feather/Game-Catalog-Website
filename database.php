@@ -1,5 +1,14 @@
 <?php
+	// Include Files
 	include "php/startSession.php";
+	include "php/dbConnect.php";
+	include "php/viewingFunctions.php";
+
+	if(isset($_SESSION["userName"]))
+		include "php/clearSessionSupplements.php";
+	else
+		include "php/clearSession.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -9,14 +18,18 @@
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-		<!-- <script type="text/javascript" src="js/functions.js"></script> -->
+		<script type="text/javascript" src="js/functions.js"></script>
 	</head>
 	<!-- Header Fold -->
 
 	<body>
 		<nav id="navbar">
 			<span class="profile">
-				<a href="#userProfilePage.php"><img class="userPFP" src="assets/pfp.jpg"></a>
+				<?php 
+					include "php/displayProfileImg.php";
+
+					echo displayProfileImg();
+				 ?>
 			</span>
 			<!-- Profile Fold -->
 
@@ -43,19 +56,10 @@
 
 					<div class="col-lg-6 col-md-6 col-sm-6">
 						<br>
-						<form action="">
+						<form action="displayDBGames.php">
 							<h2>Filter through Games</h2>
-							<select id="filter" name="filter" onchange="genreToggle();">
-								<option value="action">Action</option>
-								<option value="adventure">Adventure</option>
-								<option value="alphabetical">Alphabetical</option>
-								<option value="exploration">Exploration</option>
-								<option value="fps">First-Person Shooter</option>
-								<option value="genre">Genre</option>
-								<option value="releaseDate">Release Date</option>
-							</select>
-							<br><br>
-							<input type="submit" value="Search Database" formaction="#displayGames.php">
+							<br>
+							<input type="submit" value="Search Database">
 							<br><br>
 						</form>
 					</div>
@@ -63,14 +67,17 @@
 
 					<div class="col-lg-6 col-md-6 col-sm-6">
 						<br>
-						<form action="">
+						<form method="GET" action="">
 							<h2>Search for Users</h2>
 							<i>Enter other user's username</i>
 							<br>
-							<input type="text" placeholder="Enter username..." name="search">
-							<button type="submit" formaction="#findUser.php"><i class="fa fa-search"></i></button>
+							<input type="text" placeholder="Enter username..." name="search" onkeydown="showUsers(this.value)">
+							<button type="submit" formaction="findUser.php"><i class="fa fa-search"></i></button>
 							<br><br><br>
 						</form>
+					</div>
+
+					<div id="userHint">
 					</div>
 					<!-- User Search Form Fold -->
 
@@ -119,5 +126,10 @@
 		
 	</footer>
 	<!-- Footer Fold -->
+
+	<?php
+		// Close DB Connection
+		$conn->close();
+	?>
 
 </html>

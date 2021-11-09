@@ -25,8 +25,8 @@
 	$_SESSION["loginlastName"] = $lastName;
 	$_SESSION["loginemail"] = $email;
 	$_SESSION["loginuserName"] = $userName;
-	$_SESSION["loginpassword1"] = $pas;
-	$_SESSION["loginpassword2"];
+	$_SESSION["loginpassword1"] = $password1;
+	$_SESSION["loginpassword2"] = $password2;
 	$_SESSION["loginrecovery"] = $recovery;
 
 	// Check to see if a user with that email exists in the DB
@@ -56,11 +56,11 @@
 			//Both passwords entered are the same
 			if($password1 == $password2) {
 				// Create new account
-				$pass = crypt($password1);
-				$recover = crypt($recovery);
+				$pass = crypt($password1, $recovery);
+				$recover = crypt($recovery, $password1);
 
 				$sql = "INSERT INTO USERS VALUES
-						(null, '".$email."','".$userName."','".$firstName."','".$lastName."','".$pass."','".$recover."')";
+						(null, 0, '".$email."','".$userName."','".$firstName."','".$lastName."','".$pass."','".$recover."', 'assets/profileImages/default.jpg')";
 				$result = $conn->query($sql);
 
 				// Check if the query was successful
@@ -76,7 +76,7 @@
 					echo "
 						<script type='text/javascript'>
 							alert('Account created! Login to continue');
-							window.location.href = '../login.html';
+							window.location.href = '../login.php';
 						</script>";
 				}
 			}

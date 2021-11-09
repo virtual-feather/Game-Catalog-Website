@@ -1,6 +1,8 @@
 <?php
 	include "php/startSession.php";
 	include "php/loggedIn.php";
+	include "php/viewingFunctions.php";
+	include "php/dbConnect.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,7 +17,11 @@
 	<body>
 		<nav id="navbar">
 			<span class="profile">
-				<a href="#userProfilePage.html"><img class="userPFP" src="assets/pfp.jpg"></a>
+				<?php 
+					include "php/displayProfileImg.php";
+
+					echo displayProfileImg();
+				?>
 			</span>
 			<!-- Profile Fold -->
 
@@ -46,35 +52,10 @@
 							<label for="console">Select Console: </label>
 							<!-- Add PHP to collect consoleID and console name? -->
 							<select name="console">
-								<!-- Nintendo Home Consoles -->
-								<option>NES</option>
-								<option>SNES</option>
-								<option>N64</option>
-								<option>Gamecube</option>
-								<option value="4">Wii</option>
-								<option value="2">Wii U</option>
-								<option value="3">Switch</option>
-
-								<!-- Nintendo Handhelds -->
-								<option>Gameboy</option>
-								<option>Virtual Boy</option>
-								<option>Gameboy Color</option>
-								<option>Gameboy Advanced</option>
-								<option>DS</option>
-								<option value="1">3DS</option>
-
-								<!-- Sony Home Consoles -->
-								<option>Playstation 1</option>
-								<option>Playstation 2</option>
-								<option>Playstation 3</option>
-								<option>Playstation 4</option>
-								<option>Playstation 5</option>
-
-								<!-- Sony Handhelds -->
-								<option>PSP</option>
-								<option>PS Vita</option>
-
-								<!-- Microsoft Home Consoles -->
+								<?php
+									// Get list of consoles from CONSOLE list
+									getConsoleList(0, $conn);
+								?>
 							</select>
 							<br><br>
 
@@ -84,13 +65,10 @@
 
 							<label for="genre">Genre: </label>
 							<select name="genre">
-								<option value="Action">Action</option>
-								<option value="Adventure">Adventure</option>
-								<option value="ARPG">ARPG</option>
-								<option value="Exploration">Exploration</option>
-								<option value="FPS">First-Person Shooter</option>
-								<option value="Hack & Slash">Hack & Slash</option>
-								<option value="RPG">RPG</option>
+								<?php
+									// Get list of genres from GENRES table
+									getGenreList(0, $conn);
+								?>
 							</select>
 							<br><br>
 
@@ -121,4 +99,8 @@
 	</footer>
 	<!-- Footer Fold -->
 
+	<?php
+		// Close DB Connection
+		$conn->close();
+	?>
 </html>
