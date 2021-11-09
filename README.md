@@ -3,6 +3,16 @@ Website allows users to maintain a virtual collection that is based on their per
 
 
 -----
+UPDATE 11/08/21
+- Implemented 'database.php'
+	- Search through database's games implemented
+	- Implemnted beta version of looking up users in the database
+		- If a user is signed in, they cannot search themselves
+- Added filters to removing games from collections
+- Various UI updates
+- Began implementing user profile page
+
+-----
 UPDATE 10/18/21
 - Implemented adding games to the database: MOD only feature
 - Viewing: Now pulls console list from user's collection
