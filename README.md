@@ -3,6 +3,17 @@ Website allows users to maintain a virtual collection that is based on their per
 
 
 -----
+UPDATE 11/15/21
+- Implemented Viewing Profiles
+	- View profiles from searched users
+	- View your own profile
+- Implemented Editing Profiles
+	- Update profile images
+	- Update profile information
+- Various bug fixes
+
+
+-----
 UPDATE 11/08/21
 - Implemented 'database.php'
 	- Search through database's games implemented
