@@ -43,6 +43,7 @@
 			<div class="container">
 				<div class="row">
 					<?php
+<<<<<<< Updated upstream
 						// Clear supplements
 						include "php/clearSessionSupplements.php";
 
@@ -54,6 +55,37 @@
 								"<h1>".$_GET['search']."'s Collection</h1>".
 								"<hr><br>".
 							 "</div>";
+=======
+						// Check if the search variable is set
+						if(isset($_SESSION["enteredUN"])) 
+							$foundUN = $_SESSION["enteredUN"];
+						else
+							header("Location: index.php");
+						
+						// Clear supplements
+						//include "php/clearSessionSupplements.php";
+						
+						// Coming from database.php
+						if(!isset($foundUN)) {
+							// Perform a quick query with the selected name
+							//include "php/grabUserDataFromSearch.php";
+
+							// Display user's information
+							echo "<div class='col-lg-12 col-md-12 col-sm-12'>".
+									"<h1><a href='displayUser.php'>".$foundUN."'s Collection</a></h1>". // used to be $_GET['search']
+									"<hr><br>".
+								"</div>";
+						}
+
+						// Coming from displayUser.php
+						else {
+							// Display user's information
+							echo "<div class='col-lg-12 col-md-12 col-sm-12'>".
+									"<h1><a href='displayUser.php'>".$foundUN."'s Collection</a></h1>".
+									"<hr><br>".
+								"</div>";
+						}
+>>>>>>> Stashed changes
 
 						// Store mode. DEFAULT: VIEW
 						$mode = 'view';

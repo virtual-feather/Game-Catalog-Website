@@ -3,15 +3,21 @@
 	include "php/dbConnect.php";
 	include "php/startSession.php";
 	include "php/loggedIn.php";
+	include "php/viewingFunctions.php";
 
-	// Clear the superfluous session variables
-	include 'php/clearSessionSupplements.php';
+	// Check if the searched variable is set
+	if(isset($_SESSION["enteredUN"]))
+		unset($_SESSION["enteredUN"]);
+
+    // Get the userID we're viewing
+    if(isset($_SESSION["userID"]) )
+        $userID = $_SESSION["userID"];
 ?>
 
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>The Shelf | Edit</title>
+		<title>The Shelf | Collection</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 		<script type="text/javascript" src="js/functions.js"></script>
@@ -45,32 +51,17 @@
 		<div class="mainContent">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-12 col-md-12 col-sm-12">
-						<h1>Edit Collection</h1>
-						<hr>
-					</div>
+                    <?php
+                        // Store the mode
+                        $mode = "edit";
 
-					<div class="col-lg-6 col-md-6 col-sm-6">
-						<h2>Adding Games</h2>
-						<form action="addGamesForm.php">
-							<br>
-							<input type="submit" value="Add Games">
-							<br><br>
-						</form>
-					</div>
+                        // Display User's Profile
+                        displayProfile($mode, $userID, $conn);
 
-					<div class="col-lg-6 col-md-6 col-sm-6">
-						<h2>Removing Games</h2>
-						<form action="removeGamesForm.php">
-							<br>
-							<input type="submit" value="Remove Games">
-							<br><br>
-						</form>
-					</div>
+                        // Clear Session supplements
+                        include "php/clearSessionSupplements.php";
 
-					<div class="col-lg-12 col-md-12 col-sm-12">
-						<br>
-					</div>
+                    ?>
 
 				</div>
 			</div>

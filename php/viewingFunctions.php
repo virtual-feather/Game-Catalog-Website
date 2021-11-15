@@ -94,6 +94,7 @@
         }
     }
 
+<<<<<<< Updated upstream
     /*  searchForUser(): Searches the database for a username
                          close to the one entered
         @param $userName: Username to search for in database
@@ -103,6 +104,8 @@
         
     }
 
+=======
+>>>>>>> Stashed changes
     /*  convertGenreID(): Converts a genreID to its associated 
                           name
         @param $genreID: ID in question
@@ -188,23 +191,68 @@
         @param uID: userID to use to display profile
     */
     function displayProfile($mode, $userID, $dbConn) {
+<<<<<<< Updated upstream
+=======
+        // Logged In Profiles
+        if(isset($_SESSION["userID"]) && $userID == $_SESSION["userID"]) {
+            $pfpImgPath = $_SESSION["userImgPath"];
+            $userName = $_SESSION["userName"];
+            $accountName = $_SESSION["accountName"];
+            $favConsole = $_SESSION["userFavConsole"];
+            $favGame = $_SESSION["userFavGame"];
+            $bio = $_SESSION["userBio"];
+            $email = $_SESSION["userEmail"];
+        }
+        // Searched Profiles
+        else {
+            // Query the userID to get relevant information
+            $sql = "SELECT userName, userFirstName, userLastName, userFavConsole, userFavGame, userBio, userImgPath
+                    FROM USERS
+                    WHERE userID = '".$userID."';";
+            $result = $dbConn->query($sql);
+
+            // Check if the query was successful
+            if (!$result)
+                trigger_error('Invalid query: ' . $dbConn->error);
+    
+            // Get the information
+            if(($row = $result->fetch_assoc()) != 0 ) {
+                $pfpImgPath = $row["userImgPath"];
+                $userName = $row["userName"];
+                $accountName = $row["userFirstName"]." ".$row["userLastName"];
+                $favConsole = $row["userFavConsole"];
+                $favGame = $row["userFavGame"];
+                $bio = $row["userBio"];
+            }
+        }
+
+>>>>>>> Stashed changes
         // Display profile image
         echo "  <div class='col-lg-5 col-md-6 col-sm-12 profileImg'>";
         
         // Determine what to show based on mode
         if($mode == "view") {
             echo "  <br>
+<<<<<<< Updated upstream
                     <img src='".$_SESSION["userImgPath"]."'>";
         }
         else {
             echo "  <br>
                     ";
+=======
+                    <img src='".$pfpImgPath."'>";
+        }
+        else {
+            echo "  <br>
+                    <img src='".$pfpImgPath."'>";
+>>>>>>> Stashed changes
         }
 
         echo "  </div>";
 
         // Display Content
         echo "  <div class=' profileBody col-lg-7 col-md-6 col-sm-12'>"
+<<<<<<< Updated upstream
         ."           <h1>".$_SESSION["userName"]."'s Profile</h1>";
 
         // Determone what to show based on mode
@@ -218,6 +266,64 @@
         ."           <code>Favorite Game: </code><br>"     
         ."           <code>Bio: </code><br>"   
         ."        </div>";
+=======
+        ."           <h1>".$userName."'s Profile</h1>";
+
+        // Determone what to show based on mode
+        if($mode == "view") {
+            if(isset($_SESSION["userID"]) && $userID == $_SESSION["userID"])
+                echo "   <a href='updateProfilePage.php'>Update Profile</a>";
+        
+            echo "   <hr>"
+            ."       <code>Name: ".$accountName."</code><br>"
+            ."       <code>Total Games: ".getTotalGames($userID, $dbConn)."</code><br>"
+            ."       <code>Favorite Platform: ".$favConsole."</code><br>"   
+            ."       <code>Favorite Game: ".$favGame."</code><br>"     
+            ."       <code>Bio: ".$bio."</code><br>";   
+
+            if(!isset($_SESSION["userID"]) || ($userID != $_SESSION["userID"])) {
+                echo "<hr>
+                      <form action='findUser.php'>
+                        <input type='submit' value='View Collection' />
+                      </form>";
+            }
+
+            echo "</div>";
+        }   
+        elseif($mode == "edit") {
+            echo "  <hr>"
+            ."      <form method='post' enctype='multipart/form-data'>"
+            ."          <label>Change Profile Image: </label>"
+            ."          <input name='pfp' type='file'><br>"
+            ."          <label>Favorite Console: </label>"
+            ."          <select name='console' value='".$favConsole."'>";
+                            getConsoleList(0, $dbConn);
+            echo "      </select><br>"
+            ."          <label>Favorite Game: </label>"
+            ."          <input name='game' type='text' value='".$favGame."'><br>"
+            ."          <label> Bio: </label><br>"
+            ."          <textarea name='bio' cols='40' rows='5'>".$bio."</textarea>"
+            ."          <code>Character Limit: 100</code><br><br>"
+            ."          <input type='submit' value='Update Profile' formaction='php/confirmProfileChanges.php'>"
+            ."          <input type='submit' value='Reset Changes' formaction='updateProfilePage.php'>"
+            ."          <input type='submit' value='Return to Profile' formaction='userProfilePage.php'>" 
+            ."      </form>"
+            ."  </div>";
+/*
+            ."  <div class='col-lg-12 col-md-12 col-sm-12'>"
+            ."      <br>"
+            ."      <h1>Edit Account Information</h1>"
+            ."      <hr>"
+            ."      <form method='post'>"
+            ."          <label>Update Name: </label>"
+            ."          <input name='name' type='text' value='".$accountName."'><br>"
+            ."          <label>Update Email: </label>"
+            ."          <input name='email' type='text' value='".$email."'>"
+            ."      </form>"
+            ."  </div>";
+*/
+        }
+>>>>>>> Stashed changes
 
         
         // Display Stats about collection

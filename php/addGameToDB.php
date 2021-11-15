@@ -30,7 +30,11 @@
         else 
             $imgName = uploadImage("../assets/gamePhotos/", $_FILES["imgPath"]);
         
+<<<<<<< Updated upstream
         echo $imgName;
+=======
+        //echo $imgName;
+>>>>>>> Stashed changes
 
         // !IMPORTANT! Check if the game is already in the database before adding
         // <-- DO THIS

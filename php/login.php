@@ -10,7 +10,11 @@
 	$enteredPass = $_POST["password"];
 
 	// See if the user exists in the database
+<<<<<<< Updated upstream
 	$sql = "SELECT userFirstName, userLastName, userID, userStatus, userPassword, userImgPath 
+=======
+	$sql = "SELECT userFirstName, userLastName, userEmail, userID, userStatus, userPassword, userFavConsole, userFavGame, userBio, userImgPath 
+>>>>>>> Stashed changes
 			FROM USERS 
 			WHERE userName = '".$userName."'";
 	$result = $conn->query($sql);
@@ -37,9 +41,16 @@
 
 			// SET SESSION VARIABLES 			<<<
 			$_SESSION["userName"] = $userName;
+			$_SESSION["userEmail"] = $row["userEmail"];
 			$_SESSION["password"] = $pass;
 			$_SESSION["userID"] = $row["userID"];
 			$_SESSION["userStatus"] = $row["userStatus"];
+<<<<<<< Updated upstream
+=======
+			$_SESSION["userFavConsole"] = $row["userFavConsole"];
+			$_SESSION["userFavGame"] = $row["userFavGame"];
+			$_SESSION["userBio"] = $row["userBio"];
+>>>>>>> Stashed changes
 			$_SESSION["userImgPath"] = $row["userImgPath"];
 
 			// Get the user's name

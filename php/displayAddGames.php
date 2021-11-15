@@ -3,10 +3,18 @@
 	if(isset($_SESSION["searchGame"])) {
 		// Search the database for this game
 		$sql = "SELECT gameName, description, imgPath FROM GAMES 
+<<<<<<< Updated upstream
 				WHERE gameName LIKE '%".$_SESSION["searchGame"]."%';";
 	}
 	else {
 		$sql = $sql = "SELECT gameName, description, imgPath FROM GAMES";
+=======
+				WHERE gameName LIKE '%".$_SESSION["searchGame"]."%'
+				ORDER BY gameName ASC;";
+	}
+	else {
+		$sql = $sql = "SELECT gameName, description, imgPath FROM GAMES ORDER BY gameName ASC;";
+>>>>>>> Stashed changes
 	}
 
 	$result = $conn->query($sql);

@@ -27,6 +27,13 @@
 		$userStatus = $_SESSION["userStatus"];
 		$accountName = $_SESSION["accountName"];
 		$userImgPath = $_SESSION["userImgPath"];
+<<<<<<< Updated upstream
+=======
+		$userFavConsole = $_SESSION["userFavConsole"];
+		$userFavGame = $_SESSION["userFavGame"];
+		$userBio = $_SESSION["userBio"];
+		$userEmail = $_SESSION["userEmail"];
+>>>>>>> Stashed changes
 
 		// Clear session
 		session_unset();
@@ -37,6 +44,13 @@
 		$_SESSION["userID"] = $userID;
 		$_SESSION["userStatus"] = $userStatus;
 		$_SESSION["userImgPath"] = $userImgPath;
+<<<<<<< Updated upstream
+=======
+		$_SESSION["userFavConsole"] = $userFavConsole;
+		$_SESSION["userFavGame"] = $userFavGame;
+		$_SESSION["userBio"] = $userBio;
+		$_SESSION["userEmail"] = $userEmail;
+>>>>>>> Stashed changes
 
 		// Get the user's name
 		$_SESSION["accountName"] = $accountName;

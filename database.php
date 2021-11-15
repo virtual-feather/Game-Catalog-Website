@@ -72,7 +72,11 @@
 							<i>Enter other user's username</i>
 							<br>
 							<input type="text" placeholder="Enter username..." name="search" onkeydown="showUsers(this.value)">
+<<<<<<< Updated upstream
 							<button type="submit" formaction="findUser.php"><i class="fa fa-search"></i></button>
+=======
+							<!-- <button type="submit" formaction="findUser.php"><i class="fa fa-search"></i></button> -->
+>>>>>>> Stashed changes
 							<br><br><br>
 						</form>
 					</div>

@@ -15,6 +15,7 @@ body {
   	top: 0; /* Stay at the top */
   	left: 0;
   	background-color: #111; /* Black */
+    filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.7));
   	overflow-x: hidden; /* Disable horizontal scroll */
   	padding-top: 20px;
   	transition: 0.5s;
@@ -48,7 +49,7 @@ body {
 /* Active Navigation Link */
 #navbar a.activeLink {
   color: #fff;
-  border-right: 2px solid ;
+  border-left: 2px solid ;
 }
 
 /* User name Display */
@@ -208,8 +209,28 @@ p.paragraph {
   padding-top: 0px;
 }
 
+<<<<<<< Updated upstream
 .profileImg > img {
   position: relative;
+=======
+.profileBody > form {
+  text-align: left;
+}
+
+.profileBody > form > code {
+  color: #fff;
+  font-size: 10px;
+}
+
+.profileBody > form > input[type=submit] {
+  text-align: center;
+}
+
+.profileImg > img {
+  position: relative;
+  max-height: 450px;
+  max-width: 450px; 
+>>>>>>> Stashed changes
   width: 100%;
   border-radius: 2em 2em / 2em 2em;
   border: 1px solid darkgray;
@@ -225,6 +246,8 @@ p.paragraph {
 .userPFP {
 	position: absolute; left: 45px; top: 20px;
 	height: 65px;
+  width: 65px;
+  overflow: hidden;
 	border-radius: 4em 4em / 4em 4em;
   box-shadow: 0 4px 8px 0 rgba(0.5, 0, 0, 0.1), 0 6px 20px 0 rgba(0.5, 0, 0, 0.19);
   opacity: 100%;
@@ -234,6 +257,7 @@ p.paragraph {
 .userPFP:hover {
   opacity: 80%;
   transition: .3s ease;
+<<<<<<< Updated upstream
 }
 
 /* BOOTSTRAP EDITS */
@@ -241,6 +265,15 @@ p.paragraph {
   background-color: #000 !important;
 }
 
+=======
+}
+
+/* BOOTSTRAP OVERRIDES */
+.card {
+  background-color: #000 !important;
+}
+
+>>>>>>> Stashed changes
 .card-img-top {
   max-height: 230px !important;
   image-rendering: optimizeSpeed;
@@ -269,6 +302,7 @@ p.card-text {
   margin-bottom: 5px !important;
   color: #E9E9E9 !important;
   font-size: 14px !important;
+<<<<<<< Updated upstream
 }
 
 /* =========
@@ -306,6 +340,49 @@ div#userHint {
   max-width: 200px;
 }
 
+=======
+}
+
+.paginate {
+  margin-left: 37%;
+}
+
+/* =========
+      IDs
+   ========= */
+/* Searching Hint Divs */
+div#userHint {
+  z-index: 999;
+  color: #fff;
+  /*
+  position: relative;
+  right: -737px;
+  top: -55px;
+  */
+  position: absolute;
+  top: 290px;
+  right: 257px;
+  height: auto;
+  width: 200px;
+  border: 0.5px solid azure;
+  max-height: 95px;
+  max-width: 200px;
+  overflow: auto;
+}
+
+#userHint > p {
+  background-color: black;
+  font-size: 18px;
+  margin: 0px !important;
+  border: 1px solid black;
+  color: black;
+  padding: 0px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  max-width: 200px;
+}
+
+>>>>>>> Stashed changes
 #userHint p > a {
   color: azure;
 }
