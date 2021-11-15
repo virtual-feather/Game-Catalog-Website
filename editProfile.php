@@ -3,6 +3,9 @@
 	include "php/dbConnect.php";
 	include "php/startSession.php";
 	include "php/loggedIn.php";
+
+	// Clear the superfluous session variables
+	include 'php/clearSessionSupplements.php';
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +21,11 @@
 	<body>
 		<nav id="navbar">
 			<span class="profile">
-				<a href="#userProfilePage.php"><img class="userPFP" src="assets/pfp.jpg"></a>
+				<?php 
+					include "php/displayProfileImg.php";
+
+					echo displayProfileImg();
+				?>
 			</span>
 			<!-- Profile Fold -->
 

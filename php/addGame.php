@@ -9,6 +9,7 @@
 	$userID = $_SESSION["userID"];
 	$inCollection = False;
 
+
 	// Check to see if the user has the game in their collection
 	$sql = "SELECT gameName 
 			FROM COLLECTION JOIN CONSOLE JOIN GAMES JOIN USERS 
@@ -84,4 +85,5 @@
 	
 	// Disconnect from DB
 	$conn->close();
+
 ?>

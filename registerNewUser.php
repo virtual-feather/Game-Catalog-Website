@@ -15,7 +15,11 @@
 	<body>
 		<nav id="navbar">
 			<span class="profile">
-				<a href="#userProfilePage.html"><img class="userPFP" src="assets/pfp.jpg"></a>
+				<?php 
+					include "php/displayProfileImg.php";
+
+					echo displayProfileImg();
+				?>
 			</span>
 			<!-- Profile Fold -->
 
@@ -57,7 +61,7 @@
 							<input type="password" id="password2" name="password2">
 							<br><br>
 							<label for="recovery">Enter a 4-digit recovery pin:</label><br>
-							<input type="text" id="recovery" name="recovery" value=<?php echo $_SESSION["loginrecovery"];?>>
+							<input maxlength="4" type="text" id="recovery" name="recovery" value=<?php echo $_SESSION["loginrecovery"];?>>
 							<br><br>
 							<input type="submit" value="Submit" formaction="php/newUser.php">
 						</form>

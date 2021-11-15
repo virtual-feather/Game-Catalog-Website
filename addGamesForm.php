@@ -18,7 +18,11 @@
 	<body>
 		<nav id="navbar">
 			<span class="profile">
-				<a href="userProfilePage.php"><img class="userPFP" src="assets/pfp.jpg"></a>
+				<?php 
+					include "php/displayProfileImg.php";
+
+					echo displayProfileImg();
+				?>
 			</span>
 			<!-- Profile Fold -->
 
@@ -56,8 +60,9 @@
 						include 'php/displayAddGames.php';
 
 						// Clear the superfluous session variables
-						include 'php/clearSessionSupplements.php';
+						// include 'php/clearSessionSupplements.php';
 					?>
+
 					<div class="col-lg-12 col-md-12 col-sm-12">
 						<br>
 						<br>

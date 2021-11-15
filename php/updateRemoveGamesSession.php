@@ -24,5 +24,5 @@
 	}
 
 	// Move to previous page
-	header("Location: ../userProfile.php");
+	header("Location: ../removeGamesForm.php");
 ?>

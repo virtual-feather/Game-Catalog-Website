@@ -10,7 +10,8 @@
 	$enteredPass = $_POST["password"];
 
 	// See if the user exists in the database
-	$sql = "SELECT userFirstName, userLastName, userID, userPassword FROM USERS 
+	$sql = "SELECT userFirstName, userLastName, userEmail, userID, userStatus, userPassword, userFavConsole, userFavGame, userBio, userImgPath 
+			FROM USERS 
 			WHERE userName = '".$userName."'";
 	$result = $conn->query($sql);
 
@@ -25,7 +26,7 @@
 		echo "
 			<script type='text/javascript'>
 				alert('Something went wrong, please try again.')
-				window.location.href = '../login.html';
+				window.location.href = '../login.php';
 			</script>";
 	}
 
@@ -36,8 +37,14 @@
 
 			// SET SESSION VARIABLES 			<<<
 			$_SESSION["userName"] = $userName;
+			$_SESSION["userEmail"] = $row["userEmail"];
 			$_SESSION["password"] = $pass;
 			$_SESSION["userID"] = $row["userID"];
+			$_SESSION["userStatus"] = $row["userStatus"];
+			$_SESSION["userFavConsole"] = $row["userFavConsole"];
+			$_SESSION["userFavGame"] = $row["userFavGame"];
+			$_SESSION["userBio"] = $row["userBio"];
+			$_SESSION["userImgPath"] = $row["userImgPath"];
 
 			// Get the user's name
 			$_SESSION["accountName"] = $row["userFirstName"]." ".$row["userLastName"];
@@ -50,7 +57,7 @@
 			echo "
 			<script type='text/javascript'>
 				alert('Incorrect Password, please try again.')
-				window.location.href = '../login.html';
+				window.location.href = '../login.php';
 			</script>";
 		}
 	}

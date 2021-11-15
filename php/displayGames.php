@@ -3,21 +3,47 @@
 	include 'debugging.php';
 	include 'displayGameQueries.php'; // Implement different queries based on sorting options
 
-	// Store filter variable
-	if(isset($_SESSION["theFilter"]))
-		$filter = $_SESSION["theFilter"];
-	else
-		$filter = 'gameName ASC';
-
 	// Create basic query
 	$sql = "SELECT gameName, consoleName, GAMES.releaseDate, GAMES.description, genreName, imgPath
 		FROM COLLECTION JOIN CONSOLE JOIN GAMES JOIN USERS JOIN GENRES
 		WHERE COLLECTION.userID = USERS.userID 
 		AND COLLECTION.gameID = GAMES.gameID 
 		AND COLLECTION.consoleID = CONSOLE.ConsoleID
-		AND GENRES.genreID = GAMES.genreID
-		AND USERS.userID = '".$_SESSION["userID"]."'";
+		AND GENRES.genreID = GAMES.genreID";
 
+	// Store filter variable
+	if(isset($_SESSION["theFilter"]))
+		$filter = $_SESSION["theFilter"];
+	else
+		$filter = 'gameName ASC';
+
+	// Check if User was searched from Database
+	if(isset($_SESSION["enteredUN"])) {
+		include 'viewingFunctions.php';
+
+		// Get user's ID
+		$userID = getUserID($_SESSION["enteredUN"], $conn);
+
+		// Add to query
+		$sql = $sql." AND USERS.userID = '".$userID."'";
+	}
+	else {
+		if(isset($_SESSION["DBSearch"])) {
+			// Redo query for looking through all database games
+			$sql = "SELECT gameName, consoleName, GAMES.releaseDate, GAMES.description, genreName, imgPath
+			FROM CONSOLE JOIN GAMES JOIN GENRES
+			WHERE CONSOLE.consoleID = GAMES.consoleID
+			AND GAMES.genreID = GENRES.genreID";
+		}
+
+		else {
+			//Update
+			$userID = $_SESSION["userID"];
+
+			// Add to query
+			$sql = $sql." AND USERS.userID = '".$userID."'";
+		}
+	}
 	// Add sorting variable
 	if(isset($_SESSION["sorting"])) {
 		$sort = $_SESSION["sorting"];
@@ -38,12 +64,13 @@
 				FROM GENRES
 				WHERE ";
 		
+		// Push genre into list
 		while(isset($_SESSION["genre".strval($count)])) {
 			array_push($genreList, $_SESSION["genre".strval($count)]);
 			$count++;
 		}
 	
-		// Add the genre to the expression
+		// Add each genre to the query
 		foreach($genreList as $genreID) {
 			$sql = $sql." (genreID = ".$genreID.") OR";
 		}
@@ -53,24 +80,26 @@
 		$sql = $sql."GROUP BY genreID)";
 	}
 
-	// Add ORDER BY filter to the end of the SQL Statement
+	// Add ORDER BY filter to the end of the SQL query
 	$sql = $sql." ORDER BY ".$filter.";";
 
 	// Query
 	$result = $conn->query($sql);
 
 	// Check if the query was successful
-	if (!$result) {
+	if (!$result) 
 		trigger_error('Invalid query: ' . $conn->error);
-	}
-
-	// Gather all data and display (Table Formation) -> IMCORPORATE PAGINATION/DYNAMIC DISPLAY
+	
+	// Gather all data and display (Table Formation) -> INCORPORATE PAGINATION/DYNAMIC DISPLAY
 	// https://getbootstrap.com/docs/4.2/components/card/
+
+	// Reset counting variable
 	$count = 0;
 
 	if($result->num_rows > 0) {
 		while($row = $result->fetch_assoc()) {
-			toConsole($count);
+			// Debugging
+			//toConsole($count);
 
 			// Check the count
 			if($count == 4){
@@ -88,17 +117,17 @@
 
 			if($mode == 'view') {
 				echo "			<h5 class='card-title'>".$row["gameName"]."</h5>\n"
-				."				<p class='card-text'>Console: ".$row["consoleName"]."</p>\n"
-				."				<p class='card-text'>Genre: ".$row["genreName"]."</p>\n"
+				."				<p class='card-text'><b>Date:</b> ".$row["releaseDate"]."</p>\n"
+				."				<p class='card-text'><b>Console:</b> ".$row["consoleName"]."</p>\n"
 				."		</div>\n"
 				."		</div>\n"
 				."	</div>\n";
 			}//end view
 
 			else if($mode == 'remove') {
-				echo "			<h5 class='card-title'>Click to remove!</h5>\n"	
-					."			<form method='post' action='php/removeGame.php'>\n"
-					."				<input type='Submit' value='".$row["gameName"]."' name='remove'>\n"	
+				echo "			<h5 class='card-title'>".$row["gameName"]."</h5>\n"	
+					."			<form method='post'>\n"
+					."				<button formaction='php/removeGame.php' value='".$row["gameName"]."' name='remove'>Remove Game</button>\n"
 					."			</form>"
 					."		</div>\n"
 					."	</div>\n"
@@ -108,6 +137,20 @@
 			// Add to count
 			$count+=1;
 		}//end While
+/*		
+		// Page Navbar
+		echo "	<div class='col-lg-12 col-md-12 col-sm-12'>"
+		."			<nav aria-label='Game Display Page' class='paginate'>"
+		."				<ul class='pagination'>"
+		."  				<li class='page-item'><a class='page-link' href='#'>Previous</a></li>"
+		."  				<li class='page-item'><a class='page-link' href='#'>1</a></li>"
+		."  				<li class='page-item'><a class='page-link' href='#'>2</a></li>"
+		."  				<li class='page-item'><a class='page-link' href='#'>3</a></li>"
+		."  				<li class='page-item'><a class='page-link' href='#'>Next</a></li>"
+		."				</ul>"
+	  	."			</nav>"
+		."	 	 </div>";
+*/
 	}//end if
 
 	else {

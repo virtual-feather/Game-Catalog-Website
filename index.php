@@ -2,6 +2,11 @@
 <?php
 	include "php/dbConnect.php";
 	include "php/startSession.php";
+
+	if(isset($_SESSION["userName"]))
+		include "php/clearSessionSupplements.php";
+	else
+		include "php/clearSession.php";
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +22,11 @@
 	<body>
 		<nav id="navbar">
 			<span class="profile">
-				<a href="#userProfilePage.php"><img class="userPFP" src="assets/pfp.jpg"></a>
+				<?php 
+					include "php/displayProfileImg.php";
+
+					echo displayProfileImg();
+				?>
 			</span>
 			<!-- Profile Fold -->
 
@@ -33,7 +42,7 @@
 			</span>
 		</nav>
 		<!-- Navbar Fold -->
-
+		
 		<div class="mainContent">
 			<div class="container">
 				<div class="row">
@@ -43,8 +52,12 @@
 					</div>
 
 					<div class="col-lg-8 col-md-8 col-sm-8">
-						<h2>Build your collection online</h2>
-						<p>Take control of your game collection on the go!</p>
+						<h2>Track Your Collection</h2>
+						<p class="paragraph">Quickly view which games are in your collection with The Shelf! 
+							Built for collectors and video game enthusiests, keep a virtual 
+							collection with you at all times. Look up what your friends have in their
+							collections as well!
+						</p>
 					</div>
 
 					<div class="col-lg-4 col-md-4 col-sm-4">
@@ -54,6 +67,7 @@
 				</div>
 			</div>
 		</div>
+		
 		<!-- Main Content Fold -->
 
 	</body>

@@ -6,5 +6,5 @@
 	include "clearSession.php";
 
 	// Forward to login page
-	header("Location: ../login.html");
+	header("Location: ../login.php");
 ?>
