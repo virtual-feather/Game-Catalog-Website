@@ -3,6 +3,21 @@ Website allows users to maintain a virtual collection that is based on their per
 
 
 -----
+UPDATE 11/29/21
+- Implemented static pagination
+	- Personal profiles supported
+	- Removing games supported
+	- Adding games supported
+	- Viewing other profiles supported
+- Updated Add Games
+	- Updated UI
+	- Added console sorting 
+	- Fixed adding games on multiple consoles
+- Updated viewing other user's collections
+	- Can now sort through other user's games
+- Various bug fixes
+
+-----
 UPDATE 11/15/21
 - Implemented Viewing Profiles
 	- View profiles from searched users
@@ -11,7 +26,6 @@ UPDATE 11/15/21
 	- Update profile images
 	- Update profile information
 - Various bug fixes
-
 
 -----
 UPDATE 11/08/21
