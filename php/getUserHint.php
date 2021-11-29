@@ -32,14 +32,9 @@
                 }
 
                 else 
-<<<<<<< Updated upstream
-                    echo "<p><a href='findUser.php?search=".$row["userName"]."'>".$row["userName"]."</a></p>";
-            }
-=======
                     //echo "<p><a href='findUser.php?search=".$row["userName"]."'>".$row["userName"]."</a></p>";
                     echo "<p><a href='displayUser.php?search=".$row["userName"]."'>".$row["userName"]."</a></p>";
             }   
->>>>>>> Stashed changes
         }
         else 
             echo "No User Found..";

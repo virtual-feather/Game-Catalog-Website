@@ -24,10 +24,9 @@
 			<!-- Profile Fold -->
 
 			<span class="nav">
-				<a href="index.php">Home</a>
-				<a href="about.php">About</a>
-				<a href="database.php">Database</a>
-				<a href="login.html">Log in</a>
+				<?php
+					include 'php/displayNav.php';
+				?>
 			</span>
 
 			<span class="credit">

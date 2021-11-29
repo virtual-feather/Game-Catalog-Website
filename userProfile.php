@@ -144,9 +144,9 @@
 						// Clear the superfluous session variables
 						include 'php/clearSessionSupplements.php';
 					?>
-					
-					<div class="col-lg-12 col-md-12 col-sm-12">
 					<!--
+					<div class="col-lg-12 col-md-12 col-sm-12">
+					
 						<ul class="simple-list">
 							<li><a href="javascript:ajaxpage('index.php', 'rightcolumn');">home</a></li>         
 							<li><a href="javascript:ajaxpage('phpcontents/5.php', 'rightcolumn');">about us</a></li>

@@ -22,6 +22,35 @@ function showUsers(userInput) {
   xhttp.send();
 }
 
+/* changePage(): Changes the page to display
+   @param $pageNumber: Page to jump to
+   @param $totalPages: Total number of pages in the set
+*/
+function changePage(pageNumber, totalPages) {
+  // Circulate through all the pages
+  for(i = 1; i <= totalPages; i++) {
+
+    // Check if we are on the page that needs to get displayed
+    if(i == pageNumber) {
+      // Change the display to flex
+      document.getElementById("page"+pageNumber).style.display = "flex";
+      console.log("Showing Page"+pageNumber);
+    }
+
+    // Change all other to hidden
+    else {
+      // Change the display to be hidden
+      document.getElementById("page"+i).style.display = "none";
+      console.log("Hiding Page"+i);
+    }
+  }
+}
+
+function changeInput() {
+  userSearch = document.getElementById("userSearch");
+  userSearch.value = "";
+}
+
 /* Dynamic Web Page Stuff 
 https://stackoverflow.com/questions/16956446/dynamically-loading-content-with-ajax
 */

@@ -18,18 +18,15 @@
 				<?php 
 					include "php/displayProfileImg.php";
 
-					echo displayProfileImg();
+					//echo displayProfileImg();
 				?>
 			</span>
 			<!-- Profile Fold -->
 
 			<span class="nav">
-<!--
 				<?php 
-					include "php/displayUserName.php";
 					include "php/displayNav.php";
 				?>
--->
 			</span>
 
 			<span class="credit">
