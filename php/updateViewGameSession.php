@@ -24,5 +24,8 @@
 	}
 
 	// Move to previous page
-	header("Location: ../userProfile.php");
+	if(isset($_SESSION["enteredUN"])) 
+		header("Location: ../findUser.php");
+	else
+		header("Location: ../userProfile.php");
 ?>

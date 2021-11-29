@@ -1,5 +1,6 @@
 <?php
     include "alerts.php";
+    include "debugging.php";
 
     /*  getConsoleList(): Returns a list of consoles to be displayed
                           in a drop down list format (ex. <option>)
@@ -20,6 +21,7 @@
                 WHERE COLLECTION.consoleID = CONSOLE.ConsoleID
                 AND COLLECTION.userID = ".$userID.";";
         }
+        
         $result = $dbConn->query($sql);
 
         // Check if the query was successful
@@ -94,18 +96,6 @@
         }
     }
 
-<<<<<<< Updated upstream
-    /*  searchForUser(): Searches the database for a username
-                         close to the one entered
-        @param $userName: Username to search for in database
-        @param $dbConn: Database connection
-    */
-    function searchForUser($userName, $dbConn) {
-        
-    }
-
-=======
->>>>>>> Stashed changes
     /*  convertGenreID(): Converts a genreID to its associated 
                           name
         @param $genreID: ID in question
@@ -133,6 +123,10 @@
         @param $dbConn: Database Connection
     */
     function getConsoleName($consoleID, $dbConn) {
+        // Check if the id is 0 (all console filter was chosen)
+        if($consoleID == 0)
+            return "All Consoles";
+
         $sql = "SELECT ConsoleName 
                 FROM CONSOLE 
                 WHERE ConsoleID = " . $consoleID . ";";
@@ -165,15 +159,24 @@
             return $row["userID"];
     }
 
-    function getTotalGames($userID, $dbConn) {
+    function getTotalGames($userID=0, $dbConn) {
         // Query all games in collection
         $sql = "SELECT gameName, consoleName, GAMES.releaseDate, GAMES.description, genreName, imgPath
 		    FROM COLLECTION JOIN CONSOLE JOIN GAMES JOIN USERS JOIN GENRES
 		    WHERE COLLECTION.userID = USERS.userID 
 		    AND COLLECTION.gameID = GAMES.gameID 
 		    AND COLLECTION.consoleID = CONSOLE.ConsoleID
-		    AND GENRES.genreID = GAMES.genreID
-            AND USERS.userID = ".$userID.";";
+		    AND GENRES.genreID = GAMES.genreID";
+        
+        if($userID == 0) {
+            $sql = "SELECT gameName, consoleName, GAMES.releaseDate, GAMES.description, genreName, imgPath
+			FROM CONSOLE JOIN GAMES JOIN GENRES
+			WHERE CONSOLE.consoleID = GAMES.consoleID
+			AND GAMES.genreID = GENRES.genreID";
+        }
+        else
+            $sql = $sql." AND USERS.userID = ".$userID.";";
+
         $result = $dbConn->query($sql);
 
         // Check if the query was successful
@@ -187,12 +190,34 @@
             return 0;
     }
 
+    function detatchConsoleID($string) {
+        $chars = str_split($string);
+        $count = 0;
+
+        // Parse through to look for the delimiter
+        foreach($chars as $char) {
+            if($char == '@')
+                return substr($string, $count+1);
+            $count++;
+        }
+    }
+
+    function detatchGameName($string) {
+        $chars = str_split($string);
+        $result = "";
+
+        // Parse through
+        foreach($chars as $char) {
+            if($char == '@')
+                return $result;
+            $result .= $char;
+        }
+    }
+
     /*  displayProfile(): Display's the profile of the given userID
         @param uID: userID to use to display profile
     */
     function displayProfile($mode, $userID, $dbConn) {
-<<<<<<< Updated upstream
-=======
         // Logged In Profiles
         if(isset($_SESSION["userID"]) && $userID == $_SESSION["userID"]) {
             $pfpImgPath = $_SESSION["userImgPath"];
@@ -226,47 +251,23 @@
             }
         }
 
->>>>>>> Stashed changes
         // Display profile image
         echo "  <div class='col-lg-5 col-md-6 col-sm-12 profileImg'>";
         
         // Determine what to show based on mode
         if($mode == "view") {
             echo "  <br>
-<<<<<<< Updated upstream
-                    <img src='".$_SESSION["userImgPath"]."'>";
-        }
-        else {
-            echo "  <br>
-                    ";
-=======
                     <img src='".$pfpImgPath."'>";
         }
         else {
             echo "  <br>
                     <img src='".$pfpImgPath."'>";
->>>>>>> Stashed changes
         }
 
         echo "  </div>";
 
         // Display Content
         echo "  <div class=' profileBody col-lg-7 col-md-6 col-sm-12'>"
-<<<<<<< Updated upstream
-        ."           <h1>".$_SESSION["userName"]."'s Profile</h1>";
-
-        // Determone what to show based on mode
-        if($mode == "view") 
-            echo "   <a href='#'>Update Profile</a>";
-        
-        echo "       <hr>"
-        ."           <code>Name: ".$_SESSION["accountName"]."</code><br>"
-        ."           <code>Total Games: ".getTotalGames($userID, $dbConn)."</code><br>"
-        ."           <code>Favorite Platform: </code><br>"   
-        ."           <code>Favorite Game: </code><br>"     
-        ."           <code>Bio: </code><br>"   
-        ."        </div>";
-=======
         ."           <h1>".$userName."'s Profile</h1>";
 
         // Determone what to show based on mode
@@ -309,7 +310,7 @@
             ."          <input type='submit' value='Return to Profile' formaction='userProfilePage.php'>" 
             ."      </form>"
             ."  </div>";
-/*
+        /*
             ."  <div class='col-lg-12 col-md-12 col-sm-12'>"
             ."      <br>"
             ."      <h1>Edit Account Information</h1>"
@@ -321,9 +322,8 @@
             ."          <input name='email' type='text' value='".$email."'>"
             ."      </form>"
             ."  </div>";
-*/
+        */
         }
->>>>>>> Stashed changes
 
         
         // Display Stats about collection

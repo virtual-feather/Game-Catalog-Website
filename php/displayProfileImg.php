@@ -20,7 +20,7 @@
         }
 
         // Return the html code with correct image
-        return "<a href='".$webPath."'><img class='userPFP' src='".$imgPath."'</a>";
+        return "<a href='".$webPath."'><img class='userPFP' src='".$imgPath."'></a>";
     
     }
 
