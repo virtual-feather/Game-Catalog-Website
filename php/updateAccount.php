@@ -9,7 +9,7 @@
 	$pass2 = $_POST["password2"];
 
 	// Passwords entered are the same, update password
-	if($pass1 == $pass2) {
+	if($pass1 == $pass2 && ($pass1 != " ") && ($pass1 != "")) {
 		// Crypt the password
 		$newPass = crypt($pass1);
 
@@ -32,7 +32,7 @@
 			echo "
 			<script type='text/javascript'>
 				alert('Password updated, login to continue.')
-				window.location.href = '../login.html';
+				window.location.href = '../login.php';
 			</script>";
 		}
 	}

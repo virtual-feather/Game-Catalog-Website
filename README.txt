@@ -40,7 +40,7 @@ UPDATE 11/08/21
 - Various UI updates
 - Began implementing user profile page
 
-UPDATE 11/15/21 <-- UPDATE GITHUB
+UPDATE 11/15/21
 - Implemented Viewing Profiles
 	- View profiles from searched users
 	- View your own profile
@@ -49,29 +49,40 @@ UPDATE 11/15/21 <-- UPDATE GITHUB
 	- Update profile information
 - Various bug fixes
 
+UPDATE 11/29/21 <--- NEW UPDATE
+- Implemented static pagination
+	- Personal profiles supported
+	- Removing games supported
+	- Adding games supported
+	- Viewing other profiles supported
+- Updated Add Games
+	- Updated UI
+	- Added console sorting 
+	- Fixed adding games on multiple consoles
+- Updated viewing other user's collections
+	- Can now sort through other user's games
+- Various bug fixes
+
 
 TODO:
--> Incorporate Pagination
--> FIX: Uploading Profile Images
-	-> Only works for me, which is strange
 -> MODS: Adding consoles to the database?
--> Upload site and database to spectrisstudio.com/TheShelf
-	-> Debug stuff
+-> Adding Games fixes
+	-> Suggested Games based on User's collection
+-> Planned Features for profiles:
+	-> View Statistics 
+		-> Total worth?
+		-> Charts? (https://canvasjs.com/php-charts/pie-chart/)
+	-> Allow edits to be made to the account
+		-> First & Last Name
+		-> PIN
+		-> Email
+-> Incorporate Dynamic Pagination
 
 
 -----------------
 
--> Planned Features for profiles:
-	-> View Statistics 
-		-> Total worth?
-	-> Allow edits to be made to the account
-	-> First & Last Name
-	-> PIN
-	-> Email
-
+BONUS FEATURES:
 - Messaging other users
--> Adding Genre Filters to Adding Games 
-	-> Don't need to search gamename, can just do by genre as well
 - Planned Features for database:
 	-> Single player vs. Multiplayer
 - Page to outline specific titles & their details

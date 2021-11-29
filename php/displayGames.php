@@ -1,6 +1,7 @@
 <?php
 	// Include files
-	include 'debugging.php';
+	//include 'debugging.php';
+	//include '../js/functions.js';
 	include 'displayGameQueries.php'; // Implement different queries based on sorting options
 
 	// Create basic query
@@ -10,21 +11,11 @@
 		AND COLLECTION.gameID = GAMES.gameID 
 		AND COLLECTION.consoleID = CONSOLE.ConsoleID
 		AND GENRES.genreID = GAMES.genreID";
-
-	// Store filter variable
-	if(isset($_SESSION["theFilter"]))
-		$filter = $_SESSION["theFilter"];
-	else
-		$filter = 'gameName ASC';
-
+	
 	// Check if User was searched from Database
 	if(isset($_SESSION["enteredUN"])) {
-		include 'viewingFunctions.php';
-
-		// Get user's ID
-		$userID = getUserID($_SESSION["enteredUN"], $conn);
-
 		// Add to query
+		$userID = $foundID;
 		$sql = $sql." AND USERS.userID = '".$userID."'";
 	}
 	else {
@@ -44,6 +35,7 @@
 			$sql = $sql." AND USERS.userID = '".$userID."'";
 		}
 	}
+
 	// Add sorting variable
 	if(isset($_SESSION["sorting"])) {
 		$sort = $_SESSION["sorting"];
@@ -80,6 +72,12 @@
 		$sql = $sql."GROUP BY genreID)";
 	}
 
+	// Store filter variable
+	if(isset($_SESSION["theFilter"]))
+		$filter = $_SESSION["theFilter"];
+	else
+		$filter = 'gameName ASC';
+		
 	// Add ORDER BY filter to the end of the SQL query
 	$sql = $sql." ORDER BY ".$filter.";";
 
@@ -95,68 +93,118 @@
 
 	// Reset counting variable
 	$count = 0;
+	$pageCount = 1;
+	$contentCount = 0;
+	$totalGamesCount = 0;
+	// Check if this is a DB Search
+	if(!isset($_SESSION["DBSearch"]))
+		$totalGames = getTotalGames($userID, $conn);
+	else
+		$totalGames = getTotalGames(0, $conn);
 
 	if($result->num_rows > 0) {
+		// Initialize the first page
+		echo "</div>"
+		."<div id='page".$pageCount."' class='row'>";
+
 		while($row = $result->fetch_assoc()) {
 			// Debugging
 			//toConsole($count);
 
-			// Check the count
-			if($count == 4){
-				echo "	<div class='col-lg-12 col-md-12 col-sm-12'>\n"
-				."			<br><br>\n"
-				."		</div>";
+			// Check if 12 games are displayed on the page
+			if($contentCount == 12) {
+				// Increment page count
+				$pageCount++;
 
-				$count = 0;
+				// End current page
+				echo "</div>";
+
+				// Open a new page
+				echo "<div id='page".$pageCount."' class='row' style='display: none;'>";
+
+				// Reset Content Count
+				$contentCount = 0;
 			}
 
-			echo "	<div class='col-lg-3 col-md-6 col-sm-6>'>\n"
-				."		<div class='card'>\n"
-				."			<img src='".$row["imgPath"]."' class='card-img-top' alt='Error'>\n" 	// Update unknown images
-				."			<div class='card-body'>\n";
-
+			// Start the game card
+			echo "	<div class='col-lg-3 col-md-6 col-sm-6>'>"
+				."		<div class='card'>"
+				."			<img src='".$row["imgPath"]."' class='card-img-top' alt='Error'>" 	// Update unknown images
+				."			<div class='card-body'>";
+			
 			if($mode == 'view') {
-				echo "			<h5 class='card-title'>".$row["gameName"]."</h5>\n"
-				."				<p class='card-text'><b>Date:</b> ".$row["releaseDate"]."</p>\n"
-				."				<p class='card-text'><b>Console:</b> ".$row["consoleName"]."</p>\n"
-				."		</div>\n"
-				."		</div>\n"
-				."	</div>\n";
+				echo "			<h5 class='card-title'>".$row["gameName"]."</h5>"
+				."				<p class='card-text'><b>Date:</b> ".$row["releaseDate"]."</p>"
+				."				<p class='card-text'><b>Console:</b> ".$row["consoleName"]."</p>"
+				."		</div>"
+				."		</div>"
+				."	</div>";
 			}//end view
 
 			else if($mode == 'remove') {
-				echo "			<h5 class='card-title'>".$row["gameName"]."</h5>\n"	
-					."			<form method='post'>\n"
-					."				<button formaction='php/removeGame.php' value='".$row["gameName"]."' name='remove'>Remove Game</button>\n"
+				echo "			<h5 class='card-title'>".$row["gameName"]."</h5>"	
+					."			<form method='post'>"
+					."				<button formaction='php/removeGame.php' value='".$row["gameName"]."' name='remove'>Remove Game</button>"
 					."			</form>"
-					."		</div>\n"
-					."	</div>\n"
-					."</div>\n";
+					."		</div>"
+					."	</div>"
+					."</div>";
 			}//end remove
 
 			// Add to count
 			$count+=1;
+			$contentCount+=1;
+			$totalGamesCount+=1;
+
+			toConsole($totalGames);
+			toConsole($totalGamesCount);
+		
+			// Check the count
+			if($count == 4 || $totalGamesCount == $totalGames){
+				echo "	<div class='col-lg-12 col-md-12 col-sm-12'>";
+
+				if($contentCount == 12 || $totalGamesCount == $totalGames) {
+					echo "	<br>"
+					."		<h6>Page ".$pageCount."</h6>"
+					."		<br>"
+					."	</div>";
+				}
+				else {
+					echo "	<br><br>"
+					."	</div>";
+				}
+
+				$count = 0;
+			}
+
 		}//end While
-/*		
-		// Page Navbar
-		echo "	<div class='col-lg-12 col-md-12 col-sm-12'>"
-		."			<nav aria-label='Game Display Page' class='paginate'>"
-		."				<ul class='pagination'>"
-		."  				<li class='page-item'><a class='page-link' href='#'>Previous</a></li>"
-		."  				<li class='page-item'><a class='page-link' href='#'>1</a></li>"
-		."  				<li class='page-item'><a class='page-link' href='#'>2</a></li>"
-		."  				<li class='page-item'><a class='page-link' href='#'>3</a></li>"
-		."  				<li class='page-item'><a class='page-link' href='#'>Next</a></li>"
-		."				</ul>"
-	  	."			</nav>"
-		."	 	 </div>";
-*/
+
+		// Check if the previous div was closed based on contentCount
+		if($contentCount < 12) {
+			echo "</div>";
+		}
+		
+		if($pageCount == 1) {}
+		else {
+			// Page Navbar: Display page numbers based on number of pages
+			echo "	<div class='col-lg-12 col-md-12 col-sm-12'>"
+			."			<nav aria-label='Game Display Page' class='paginate'>"
+			."				<ul class='pagination'>";
+			for($i = 1; $i <= $pageCount; $i++) {
+				echo "<li class='page-item'><a class='page-link' onclick='changePage(".$i.", ".$pageCount.");'>".$i."</a></li>";
+			}
+
+			echo "			</ul>"
+			."			</nav>"
+			."	 	 </div>";
+		}
+
 	}//end if
 
 	else {
-    	echo "	<div class='col-lg-12 col-md-12 col-sm-12'>\n"
-    		."		<h2>No games in collection</h2>"
-    		."	</div>\n";
+		echo "	<div class='col-lg-12 col-md-12 col-sm-12'>\n"
+			."		<h2>No games in collection</h2>"
+			."	</div>\n";
   	}
 
 	// Close db connection

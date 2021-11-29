@@ -3,6 +3,9 @@ body {
   /*background-color: #D8D7CF !important;*/
 }
 
+se {
+  text-decoration: underline;
+}
 
 /* ===========
         ID
@@ -119,6 +122,18 @@ body {
   color: #ffffff;
 }
 
+.mainContent h6 {
+  color: #e0e0e0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  border: 0.5px solid white;
+  border-right-width: 100px;
+  border-right-color:rgba(0, 0, 0, 0.7);
+  border-left-width: 100px;
+  border-left-color:rgba(0, 0, 0, 0.7);
+}
+
 .mainContent p{
   padding: 10px;
   margin-top: 25px;
@@ -209,10 +224,6 @@ p.paragraph {
   padding-top: 0px;
 }
 
-<<<<<<< Updated upstream
-.profileImg > img {
-  position: relative;
-=======
 .profileBody > form {
   text-align: left;
 }
@@ -230,7 +241,6 @@ p.paragraph {
   position: relative;
   max-height: 450px;
   max-width: 450px; 
->>>>>>> Stashed changes
   width: 100%;
   border-radius: 2em 2em / 2em 2em;
   border: 1px solid darkgray;
@@ -257,15 +267,6 @@ p.paragraph {
 .userPFP:hover {
   opacity: 80%;
   transition: .3s ease;
-<<<<<<< Updated upstream
-}
-
-/* BOOTSTRAP EDITS */
-.card {
-  background-color: #000 !important;
-}
-
-=======
 }
 
 /* BOOTSTRAP OVERRIDES */
@@ -273,7 +274,6 @@ p.paragraph {
   background-color: #000 !important;
 }
 
->>>>>>> Stashed changes
 .card-img-top {
   max-height: 230px !important;
   image-rendering: optimizeSpeed;
@@ -302,49 +302,14 @@ p.card-text {
   margin-bottom: 5px !important;
   color: #E9E9E9 !important;
   font-size: 14px !important;
-<<<<<<< Updated upstream
-}
-
-/* =========
-      IDs
-   ========= */
-/* Searching Hint Divs */
-div#userHint {
-  z-index: 999;
-  color: #fff;
-  /*
-  position: relative;
-  right: -737px;
-  top: -55px;
-  */
-  position: absolute;
-  top: 290px;
-  right: 275px;
-  height: auto;
-  width: 200px;
-  border: 0.5px solid azure;
-  max-height: 95px;
-  max-width: 200px;
-  overflow: auto;
-}
-
-#userHint > p {
-  /*background-color: azure;*/
-  font-size: 18px;
-  margin: 0px !important;
-  border: 1px solid black;
-  color: black;
-  padding: 0px;
-  padding-top: 2px;
-  padding-bottom: 2px;
-  max-width: 200px;
-}
-
-=======
 }
 
 .paginate {
-  margin-left: 37%;
+  margin: 0 auto;
+}
+
+.page-link {
+  cursor: pointer;
 }
 
 /* =========
@@ -354,14 +319,11 @@ div#userHint {
 div#userHint {
   z-index: 999;
   color: #fff;
-  /*
   position: relative;
-  right: -737px;
+  /*top: 290px;*/
   top: -55px;
-  */
-  position: absolute;
-  top: 290px;
-  right: 257px;
+  /*right: 257px;*/
+  right: -754px;
   height: auto;
   width: 200px;
   border: 0.5px solid azure;
@@ -382,9 +344,13 @@ div#userHint {
   max-width: 200px;
 }
 
->>>>>>> Stashed changes
 #userHint p > a {
   color: azure;
+}
+
+/* Game Pages */
+div#hidden {
+  display: none !important;
 }
 
 /* ===========

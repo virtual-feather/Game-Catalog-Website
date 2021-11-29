@@ -60,7 +60,7 @@
 				$recover = crypt($recovery, $password1);
 
 				$sql = "INSERT INTO USERS VALUES
-						(null, 0, '".$email."','".$userName."','".$firstName."','".$lastName."','".$pass."','".$recover."', 'assets/profileImages/default.jpg')";
+						(null, 0, '".$email."','".$userName."','".$firstName."','".$lastName."', ' ', ' ', 'Hello!', '".$pass."', '".$recover."', 'assets/profileImages/default.jpg')";
 				$result = $conn->query($sql);
 
 				// Check if the query was successful

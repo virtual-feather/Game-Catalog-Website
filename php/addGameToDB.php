@@ -22,42 +22,64 @@
 
     // Everything entered
     else {
-        // No image uploaded, set default image
-        if($_FILES["imgPath"]["name"] == "") 
-            $imgName = "question.jpg";   
-        
-        // Image Uploaded
-        else 
-            $imgName = uploadImage("../assets/gamePhotos/", $_FILES["imgPath"]);
-        
-<<<<<<< Updated upstream
-        echo $imgName;
-=======
-        //echo $imgName;
->>>>>>> Stashed changes
+        try {
+            // Check if the game is already in the database before adding
+            $sql = "SELECT gameID
+                    FROM GAMES
+                    WHERE gameName = '".$gameName."'
+                    AND consoleID = ".$console.";";
+            $result = $conn->query($sql);
 
-        // !IMPORTANT! Check if the game is already in the database before adding
-        // <-- DO THIS
+            // Check if the query was successful
+            if( ($row = $result->fetch_assoc()) != 0 ) {
+                echo "
+                <script type='text/javascript'>
+                    alert('The game is already in the database!')
+                    window.location.href = '../addGametoDBForm.php';
+                </script>";  
+            }
 
-        // Insert game into the database
-        $sql = "INSERT INTO GAMES 
-                VALUES(null, ".$console.", '".$gameName."', '".$releaseDate."', '".$genre."', '".$desc."', 'assets/gamePhotos/".$imgName."');";
-        $result = $conn->query($sql);
+            // Game does not exist, add it
+            else {
 
-        // Check if the query was successful
-        if (!$result) {
-            echo "
-            <script type='text/javascript'>
-                alert('There was an error adding the game. Please try again or contact support if the issue persists.')
-                window.location.href = '../addGametoDBForm.php';
-            </script>";  
+                // No image uploaded, set default image
+                if($_FILES["imgPath"]["name"] == "") 
+                    $imgName = "question.jpg";   
+                
+                // Image Uploaded
+                else 
+                    $imgName = uploadImage("../assets/gamePhotos/", $_FILES["imgPath"]);
+                
+                //echo $imgName;
+
+                // Insert game into the database
+                $sql = "INSERT INTO GAMES 
+                        VALUES(null, ".$console.", '".$gameName."', '".$releaseDate."', '".$genre."', '".$desc."', 'assets/gamePhotos/".$imgName."');";
+                $result = $conn->query($sql);
+
+                // Check if the query was successful
+                if (!$result) {
+                    echo "
+                    <script type='text/javascript'>
+                        alert('There was an error adding the game. Please try again or contact support if the issue persists.')
+                        window.location.href = '../addGametoDBForm.php';
+                    </script>";  
+                }
+
+                // Game Added
+                else {
+                    echo "
+                        <script type='text/javascript'>
+                            alert('".$gameName." was succesfully added to the database!')
+                            window.location.href = '../addGametoDBForm.php';
+                        </script>";  
+                }
+            }
         }
-
-        // Game Added
-        else {
+        catch(Exception $e) {
             echo "
                 <script type='text/javascript'>
-                    alert('".$gameName." was succesfully added to the database!')
+                    alert('There was an error adding the game. Please try again or contact support if the issue persists.')
                     window.location.href = '../addGametoDBForm.php';
                 </script>";  
         }
