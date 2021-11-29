@@ -40,7 +40,11 @@
 
                 // Check if the query was successful
                 if (!$result)
-                    trigger_error('Invalid query: ' . $conn->error);
+                    echo "
+                    <script type='text/javascript'>
+                        alert('There was a problem updating the account.')
+                        window.location.href = '../updateProfilePage.php';
+                    </script>";
         
                 // Change the session variable
                 $_SESSION["userImgPath"] = $userPFP;
@@ -52,7 +56,7 @@
                 <script type='text/javascript'>
                     alert('There was a problem uploading the image.')
                     window.location.href = '../updateProfilePage.php';
-                </script>";
+                </script>"; 
         }
         
     }
