@@ -17,6 +17,8 @@ Website allows users to maintain a virtual collection that is based on their per
 
 ---
 
+# Update Log
+
 UPDATE 11/29/21
 - Implemented static pagination
 	- Personal profiles supported
